@@ -20,6 +20,10 @@
 #define max(a,b)    (((a) > (b)) ? (a) : (b))
 #endif
 
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
+
 /* Integration routines */
 /* Gauss-Kronrod for integration over finite range. */
 double G_K15(double f(),double a,double b,double *abserr,
@@ -100,3 +104,6 @@ double dqawce(double f(),double a,double b,double c,double epsabs,
 double G_B15(double f(),double a,double b,double *abserr,
     double *resabs, double *resasc);
 
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */

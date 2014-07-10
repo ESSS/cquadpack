@@ -147,6 +147,7 @@ _40:
     c1 = c2;
     c2 += cycle;
 _50:
+    ;
     }
 
  /* Set final result and error estimate. */

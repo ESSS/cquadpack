@@ -38,8 +38,11 @@ double dqc25c(double f(),double a,double b,double c,double *abserr,
         0.13052619222005159155};
     double ak22,amom0,amom1,amom2,cc,centr;
     double cheb12[13],cheb24[25],fval[25];
-    double hlgth,p2,p3,p4,resabs,resasc,res12,res24,u,result;
-    int i,isym,k,kp;
+    double hlgth,resabs,resasc,res12,res24,u,result;
+    int i,isym,k;
+    int unitialized_value = 0xCCCCCCCC;
+    int kp = unitialized_value;
+    double p2 = unitialized_value, p3 = unitialized_value, p4 = unitialized_value;
 
     cc = (2.0 * c - b - a) / (b - a);
     if (fabs(cc) < 1.1) goto _10;

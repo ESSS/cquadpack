@@ -63,6 +63,7 @@ _30:
         *abserr = error;
         result = res;
 _40:
+        ;
     }
 _50:
     if (NN == limexp) NN = 2 * (limexp/2) - 1;
