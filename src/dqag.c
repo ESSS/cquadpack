@@ -20,31 +20,31 @@
  *
  * PARAMETERS:
  *
- *	f() - double precision function to be integrated.
+ *    f() - double precision function to be integrated.
  *
- *	a - lower limit of integration.
+ *    a - lower limit of integration.
  *
- *	b - upper limit of integration.
+ *    b - upper limit of integration.
  *
- *	epsabs - absolute accuracy requested.
+ *    epsabs - absolute accuracy requested.
  *
- *	epsrel - relative accuracy requested.
+ *    epsrel - relative accuracy requested.
  *
- *	irule - integration rule to be used as follows:
- *		irule = 1 -- G_K 7-15
- *		irule = 2 -- G_K 10-21
- *		irule = 3 -- G_K 15-31
- *		irule = 4 -- G_K 20-41
- *		irule = 5 -- G_K 25-51
- *		irule = 6 -- G_K 30-61
- */ 	
+ *    irule - integration rule to be used as follows:
+ *        irule = 1 -- G_K 7-15
+ *        irule = 2 -- G_K 10-21
+ *        irule = 3 -- G_K 15-31
+ *        irule = 4 -- G_K 20-41
+ *        irule = 5 -- G_K 25-51
+ *        irule = 6 -- G_K 30-61
+ */     
 double dqag(double f(),double a,double b,double epsabs,
-	double epsrel,int irule,double *abserr,int *neval,int *ier)
+    double epsrel,int irule,double *abserr,int *neval,int *ier)
 {
     double result;
     int last;
-	
+    
     result = dqage(f,a,b,epsabs,epsrel,irule,abserr,neval,ier,&last); 
 
-	return result;
-}	
+    return result;
+}    

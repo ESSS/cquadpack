@@ -6,18 +6,18 @@ double dqc25s(double f(),double a,double b,double bl,double br,
     double alfa,double beta,double ri[],double rj[],double rg[],
     double rh[],double *abserr,double *resasc,int wgtfunc,int *nev)
 {
-	static double x[11] = {
-		0.99144486137381041114,
-		0.96592582628906828675,
-		0.92387953251128675613,
-		0.86602540378443864676,
-		0.79335334029123516458,
-		0.70710678118654752440,
-		0.60876142900872063942,
-		0.50000000000000000000,
-		0.38268343236508977173,
-		0.25881904510252076235,
-		0.13052619222005159155};
+    static double x[11] = {
+        0.99144486137381041114,
+        0.96592582628906828675,
+        0.92387953251128675613,
+        0.86602540378443864676,
+        0.79335334029123516458,
+        0.70710678118654752440,
+        0.60876142900872063942,
+        0.50000000000000000000,
+        0.38268343236508977173,
+        0.25881904510252076235,
+        0.13052619222005159155};
     double centr,dc,factor,fix,hlgth,resabs,res12,res24,u,result;
     double cheb12[13],cheb24[25],fval[25];
     int i,isym;
@@ -224,6 +224,6 @@ _260:
     result = (result + res24)* factor;
     *abserr = (*abserr + fabs(res24-res12))*factor;
 _270:
- 	return result;
+     return result;
 }
 
