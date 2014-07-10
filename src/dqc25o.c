@@ -4,9 +4,9 @@
 
 #define NMAC 27
 
-double dqc25o(double f(),double a,double b,double omega,int sincos,
+double dqc25o(dq_function_type f,double a,double b,double omega,int sincos,
     int nrmom,int maxp1,int ksave,double *abserr,int *neval,
-    double *resabs,double *resasc,int *momcom,double **chebmo)
+    double *resabs,double *resasc,int *momcom,double **chebmo, void* user_data)
 {
     static double x[11] = {
         0.99144486137381041114,
@@ -21,11 +21,13 @@ double dqc25o(double f(),double a,double b,double omega,int sincos,
         0.25881904510252076235,
         0.13052619222005159155};
     double ac,an,an2,as,asap,ass,centr,conc,cons,cospar;
-    double estc,ests,hlgth,mm1,parint,par2,par22,p2,p3;
-    double p4,resc12,resc24,ress12,ress24,result,sinpar;
+    double estc,ests,hlgth,parint,par2,par22;
+    double resc12,resc24,ress12,ress24,result,sinpar;
     double cheb12[13],cheb24[25],c[28],d[28],d1[28],d2[28];
     double d3[28],fval[25],v[28];
-    int i,isym,j,k,m,noequ,noeq1;
+    int unitialized_value = 0xCCCCCCCC;
+    double p2 = unitialized_value, p3 = unitialized_value, p4 = unitialized_value;
+    int i,isym,j,k,m,noequ,noeq1,mm1;
 
     centr = 0.5 * (b + a);
     hlgth = 0.5 * (b - a);
@@ -38,7 +40,7 @@ double dqc25o(double f(),double a,double b,double omega,int sincos,
  */
     if (fabs(parint) > 2.0) goto _10;
      result = G_K15W(f,dqwgto,omega,p2,p3,p4,sincos,a,b,
-              abserr,resabs,resasc);
+              abserr,resabs,resasc, user_data);
      *neval = 15;
      goto _190;
 
@@ -185,13 +187,13 @@ _140:
 /* Compute the coefficients of the Chebyshev expansions of degrees
  * 12 and 24 of the function f.
  */
-     fval[0] = 0.5 * f(centr+hlgth);
-     fval[12] = f(centr);
-     fval[24] = 0.5 * f(centr-hlgth);
+     fval[0] = 0.5 * f(centr+hlgth, user_data);
+     fval[12] = f(centr, user_data);
+     fval[24] = 0.5 * f(centr-hlgth, user_data);
      for (i = 1; i < 12; i++) {
          isym = 24 - i;
-         fval[i] = f(hlgth*x[i-1]+centr);
-         fval[isym] = f(centr-hlgth*x[i-1]);
+         fval[i] = f(hlgth*x[i-1]+centr, user_data);
+         fval[isym] = f(centr-hlgth*x[i-1], user_data);
      }
 
      dqcheb(x,fval,cheb12,cheb24);

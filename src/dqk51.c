@@ -2,8 +2,8 @@
 #include <math.h>
 #include "cquadpak.h"
 
-double G_K51(double f(),double a,double b,double *abserr,
-    double *resabs,double *resasc)
+double G_K51(dq_function_type f,double a,double b,double *abserr,
+    double *resabs,double *resasc, void* user_data)
 {
 /* Gauss-Kronrod abscissae and weights for 51 - 25 rules */
     static long double XGK51[26] = {
@@ -85,15 +85,15 @@ double G_K51(double f(),double a,double b,double *abserr,
     hlgth = 0.5 * (b - a);
     dhlgth = fabs(hlgth);
 
-    fc=(*f)(centr);
+    fc=(*f)(centr, user_data);
     resg = fc * WG25[12];
     resk = fc * WGK51[25];
     *resabs = fabs(resk);
     for (j = 0; j < 12; j++) {
         jtw = 2 * j + 1;
         absc = hlgth * XGK51[jtw];
-        fval1 = (*f)(centr-absc);
-        fval2 = (*f)(centr+absc);
+        fval1 = (*f)(centr-absc, user_data);
+        fval2 = (*f)(centr+absc, user_data);
         fv1[jtw] = fval1;
         fv2[jtw] = fval2;
         fsum = fval1 + fval2;
@@ -104,8 +104,8 @@ double G_K51(double f(),double a,double b,double *abserr,
     for (j = 0; j < 13; j++) {
         jtwm1 = j * 2;
         absc = hlgth * XGK51[jtwm1];
-        fval1 = (*f)(centr-absc);
-        fval2 = (*f)(centr+absc);
+        fval1 = (*f)(centr-absc, user_data);
+        fval2 = (*f)(centr+absc, user_data);
         fv1[jtwm1] = fval1;
         fv2[jtwm1] = fval2;
         fsum = fval1 + fval2;

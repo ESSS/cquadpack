@@ -28,8 +28,8 @@
  *
  *    epsrel - relative accuracy requested.
  */
-double dqags(double f(),double a,double b,double epsabs,
-    double epsrel,double *abserr,int *neval,int *ier)
+double dqags(dq_function_type f,double a,double b,double epsabs,
+    double epsrel,double *abserr,int *neval,int *ier, void* user_data)
 {
     double abseps,alist[LIMIT],area,area1,area12,area2;
     double a1,a2,blist[LIMIT],b1,b2,correc,defabs,defab1;
@@ -58,7 +58,7 @@ double dqags(double f(),double a,double b,double epsabs,
 
 /* First approximation to the integral. */
     ierro = 0;
-    result = G_K21(f,a,b,abserr,&defabs,&resabs);
+    result = G_K21(f,a,b,abserr,&defabs,&resabs, user_data);
 
 /* Test on accuracy. */
     dres = fabs(result);
@@ -103,10 +103,10 @@ double dqags(double f(),double a,double b,double epsabs,
         a2 = b1;
         b2 = blist[maxerr];
         erlast = errmax;
-        area1 = G_K21(f,a1,b1,&error1,&resabs,&defab1);
-        area2 = G_K21(f,a2,b2,&error2,&resabs,&defab2);
+        area1 = G_K21(f,a1,b1,&error1,&resabs,&defab1, user_data);
+        area2 = G_K21(f,a2,b2,&error2,&resabs,&defab2, user_data);
 
-/* Improve previous approxminations to integral and error
+/* Improve previous approximation's to integral and error
       and test for accuracy. */
         area12 = area1 + area2;
         erro12 = error1 + error2;
@@ -182,7 +182,7 @@ _40:
         if ((ierro == 3) || (erlarg <= ertest)) goto _60;
 
 /* The smallest interval has the largest error. Before bisecting, decrease
-    the sum of the erors over the larger intervals (erlarg) and
+    the sum of the errors over the larger intervals (erlarg) and
         perform extrapolation.) */
         id = nrmax;
         jupbnd = last;
@@ -228,6 +228,7 @@ _80:
         ertest = errbnd;
         rlist2[1] = area;
 _90:
+        ;
     }                    /* 90: */
 _100:
     if (*abserr == oflow) goto _115;

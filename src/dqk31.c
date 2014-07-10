@@ -2,8 +2,8 @@
 #include <math.h>
 #include "cquadpak.h"
 
-double G_K31(double f(),double a,double b,double *abserr,
-    double *resabs,double *resasc)
+double G_K31(dq_function_type f,double a,double b,double *abserr,
+    double *resabs,double *resasc, void* user_data)
 {
     static long double XGK31[16] = {
         0.99800229869339706029,
@@ -59,15 +59,15 @@ double G_K31(double f(),double a,double b,double *abserr,
     hlgth = 0.5 * (b - a);
     dhlgth = fabs(hlgth);
 
-    fc=(*f)(centr);
+    fc=(*f)(centr, user_data);
     resg = fc * WG15[7];
     resk = fc * WGK31[15];
     *resabs = fabs(resk);
     for (j = 0; j < 7; j++) {
         jtw = 2 * j + 1;
         absc = hlgth * XGK31[jtw];
-        fval1 = (*f)(centr-absc);
-        fval2 = (*f)(centr+absc);
+        fval1 = (*f)(centr-absc, user_data);
+        fval2 = (*f)(centr+absc, user_data);
         fv1[jtw] = fval1;
         fv2[jtw] = fval2;
         fsum = fval1 + fval2;
@@ -78,8 +78,8 @@ double G_K31(double f(),double a,double b,double *abserr,
     for (j = 0; j < 8; j++) {
         jtwm1 = j * 2;
         absc = hlgth * XGK31[jtwm1];
-        fval1 = (*f)(centr-absc);
-        fval2 = (*f)(centr+absc);
+        fval1 = (*f)(centr-absc, user_data);
+        fval2 = (*f)(centr+absc, user_data);
         fv1[jtwm1] = fval1;
         fv2[jtwm1] = fval2;
         fsum = fval1 + fval2;

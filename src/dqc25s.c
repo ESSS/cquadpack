@@ -2,9 +2,9 @@
 #include <math.h>
 #include "cquadpak.h"
 
-double dqc25s(double f(),double a,double b,double bl,double br,
+double dqc25s(dq_function_type f,double a,double b,double bl,double br,
     double alfa,double beta,double ri[],double rj[],double rg[],
-    double rh[],double *abserr,double *resasc,int wgtfunc,int *nev)
+    double rh[],double *abserr,double *resasc,int wgtfunc,int *nev, void* user_data)
 {
     static double x[11] = {
         0.99144486137381041114,
@@ -30,7 +30,7 @@ double dqc25s(double f(),double a,double b,double bl,double br,
 
 /*  If a>bl and b<br, apply the 15-point Gauss-Kronrod scheme. */
     result = G_K15W(f,dqwgts,a,b,alfa,beta,wgtfunc,bl,br,abserr,
-                &resabs,resasc);
+                &resabs,resasc, user_data);
     *nev = 15;
     goto _270;
 
@@ -43,14 +43,14 @@ _10:
     hlgth = 0.5 * (br-bl);
     centr = 0.5 * (br+bl);
     fix = b-centr;
-    fval[0]  = 0.5 * f(hlgth+centr)*pow(fix-hlgth,beta);
-    fval[12] = f(centr) * pow(fix,beta);
-    fval[24] = 0.5 * f(centr-hlgth)*pow(fix+hlgth,beta);
+    fval[0]  = 0.5 * f(hlgth+centr, user_data)*pow(fix-hlgth,beta);
+    fval[12] = f(centr, user_data) * pow(fix,beta);
+    fval[24] = 0.5 * f(centr-hlgth, user_data)*pow(fix+hlgth,beta);
     for (i=1;i<12;i++) {
         u = hlgth * x[i-1];
         isym = 24 - i;
-        fval[i] = f(u+centr) * pow(fix-u,beta);
-        fval[isym] = f(centr-u) * pow(fix+u,beta);
+        fval[i] = f(u+centr, user_data) * pow(fix-u,beta);
+        fval[isym] = f(centr-u, user_data) * pow(fix+u,beta);
     }
     factor = pow(hlgth,alfa+1.0);
     result = 0.0;
@@ -138,14 +138,14 @@ _140:
     hlgth = 0.5 * (b-bl);
     centr = 0.5 * (br+bl);
     fix = centr-a;
-    fval[0]  = 0.5 * f(hlgth+centr) * pow(fix+hlgth,alfa);
-    fval[12] = f(centr) * pow(fix,alfa);
-    fval[24] = 0.5 * f(centr-hlgth) * pow(fix-hlgth,alfa);
+    fval[0]  = 0.5 * f(hlgth+centr, user_data) * pow(fix+hlgth,alfa);
+    fval[12] = f(centr, user_data) * pow(fix,alfa);
+    fval[24] = 0.5 * f(centr-hlgth, user_data) * pow(fix-hlgth,alfa);
     for (i=1;i<12;i++) {
         u = hlgth * x[i-1];
         isym = 24 - i;
-        fval[i] = f(u+centr) * pow(fix+u,alfa);
-        fval[isym] = f(centr-u) * pow(fix-u,alfa);
+        fval[i] = f(u+centr, user_data) * pow(fix+u,alfa);
+        fval[isym] = f(centr-u, user_data) * pow(fix-u,alfa);
     }
     factor = pow(hlgth,beta+1.0);
     result = 0.0;

@@ -21,8 +21,8 @@
  *
  *      neval   - number of function evaluations
  */
-double dqc25c(double f(),double a,double b,double c,double *abserr,
-        int *krul, int *neval)
+double dqc25c(dq_function_type f,double a,double b,double c,double *abserr,
+        int *krul, int *neval, void* user_data)
 {
     static double x[11] = {
         0.99144486137381041114,
@@ -49,7 +49,7 @@ double dqc25c(double f(),double a,double b,double c,double *abserr,
 
 /*  Apply the 15-point Gauss-Kronrod scheme.    */
     (*krul)--;
-    result = G_K15W(f,dqwgtc,c,p2,p3,p4,kp,a,b,abserr,&resabs,&resasc);
+    result = G_K15W(f,dqwgtc,c,p2,p3,p4,kp,a,b,abserr,&resabs,&resasc, user_data);
     *neval = 15;
     if (resasc == *abserr) (*krul)++;
     goto _50;
@@ -59,14 +59,14 @@ _10:
     hlgth = 0.5 * (b - a);
     centr = 0.5 * (b + a);
     *neval = 25;
-    fval[0] = 0.5 * f(hlgth+centr);
-    fval[12] = f(centr);
-    fval[24] = 0.5 * f(centr-hlgth);
+    fval[0] = 0.5 * f(hlgth+centr, user_data);
+    fval[12] = f(centr, user_data);
+    fval[24] = 0.5 * f(centr-hlgth, user_data);
     for (i=1;i<12;i++) {
         u = hlgth * x[i-1];
         isym = 24 - i;
-        fval[i] = f(u+centr);
-        fval[isym] = f(centr-u);
+        fval[i] = f(u+centr, user_data);
+        fval[isym] = f(centr-u, user_data);
     }
 
 /*  Compute the Chebyshev series expansion. */

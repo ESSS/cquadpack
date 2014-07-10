@@ -32,11 +32,11 @@
  *
  */
 
-double dqfour(double f(),double a,double b,double omega,
+double dqfour(dq_function_type f,double a,double b,double omega,
     int sincos,double epsabs,double epsrel,
     int icall,int maxp1,double *abserr,
     int *neval,int *ier,
-    int *momcom,double **chebmo)
+    int *momcom,double **chebmo, void* user_data)
 {
     double abseps,area,area1,area12,area2;
     double a1,a2,b1,b2,correc,defabs,defab1;
@@ -74,7 +74,7 @@ double dqfour(double f(),double a,double b,double omega,
         *momcom = 0;
 _5:
     result = dqc25o(f,a,b,domega,sincos,nrmom,maxp1,0,
-        abserr,neval,&defabs,&resabs,momcom,chebmo);
+        abserr,neval,&defabs,&resabs,momcom,chebmo, user_data);
 /* Test on accuracy. */
     dres = fabs(result);
     errbnd = max(epsabs,epsrel*dres);
@@ -128,10 +128,10 @@ _10:
         b2 = blist[maxerr];
         erlast = errmax;
         area1 = dqc25o(f,a1,b1,domega,sincos,nrmom,maxp1,0,
-            &error1,&nev,&resabs,&defab1,momcom,chebmo);
+            &error1,&nev,&resabs,&defab1,momcom,chebmo, user_data);
         *neval += nev;
         area2 = dqc25o(f,a2,b2,domega,sincos,nrmom,maxp1,1,
-            &error2,&nev,&resabs,&defab2,momcom,chebmo);
+            &error2,&nev,&resabs,&defab2,momcom,chebmo, user_data);
         *neval += nev;
 
 /* Improve previous approximations to integral and error

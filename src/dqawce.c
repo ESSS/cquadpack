@@ -24,8 +24,8 @@
  *
  *      ier     -   error code
  */
-double dqawce(double f(),double a,double b,double c,double epsabs,
-    double epsrel,double *abserr,int *neval,int *ier)
+double dqawce(dq_function_type f,double a,double b,double c,double epsabs,
+    double epsrel,double *abserr,int *neval,int *ier, void* user_data)
 {
     double aa,area,area1,area2,area12,a1,a2,bb,b1,b2;
     double errbnd,errmax,error1,error2,erro12,errsum,result;
@@ -56,7 +56,7 @@ double dqawce(double f(),double a,double b,double c,double epsabs,
 _10:
     *ier = 0;
     krule = 1;
-    result = dqc25c(f,aa,bb,c,abserr,&krule,neval);
+    result = dqc25c(f,aa,bb,c,abserr,&krule,neval, user_data);
     rlist[0] = result;
     elist[0] = *abserr;
     iord[0] = 0;
@@ -91,9 +91,9 @@ _10:
         if ((c >  b1) && (c < b2)) b1 = 0.5 * (a1 + c);
         a2 = b1;
         krule = 2;
-        area1 = dqc25c(f,a1,b1,c,&error1,&krule,&nev);
+        area1 = dqc25c(f,a1,b1,c,&error1,&krule,&nev, user_data);
         *neval = *neval + nev;
-        area2 = dqc25c(f,a2,b2,c,&error2,&krule,&nev);
+        area2 = dqc25c(f,a2,b2,c,&error2,&krule,&nev, user_data);
         *neval = *neval + nev;
 
 /*  Improve previous approximations to integral and error and

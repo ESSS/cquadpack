@@ -28,10 +28,10 @@
  *    maxp1 - upper bound on the number of Chebyshev moments
  *        which can be stored.
  */
-double dqawfe(double f(),double a,double omega,int sincos,
+double dqawfe(dq_function_type f,double a,double omega,int sincos,
     double epsabs,int limlst,int maxp1,
     double *abserr,int *neval,int *ier,double rslst[],
-    double erlst[],int ierlst[],double **chebmo)
+    double erlst[],int ierlst[],double **chebmo, void* user_data)
 {
     double abseps,correc,cycle,c1,c2,dl,drl;
     double ep,eps,epsa,errsum,fact,p1,psum[52],reseps;
@@ -52,7 +52,7 @@ double dqawfe(double f(),double a,double omega,int sincos,
 
 /* Integration by DQAGI if omega is zero. */
     if (sincos == COSINE)
-        result = dqagi(f,0.0,1,epsabs,0.0,abserr,neval,ier);
+        result = dqagi(f,0.0,1,epsabs,0.0,abserr,neval,ier, user_data);
     rslst[0] = result;
     erlst[0] = *abserr;
     ierlst[0] = *ier;
@@ -90,7 +90,7 @@ _10:
 /*    dla = lst;  This line is in the original code, but dla is unused. */
     epsa = eps * fact;
     rslst[lst] = dqfour(f,c1,c2,omega,sincos,epsa,0.0,lst+1,maxp1,  // lst+1
-        &erlst[lst],&nev,&ierlst[lst],&momcom,chebmo);
+        &erlst[lst],&nev,&ierlst[lst],&momcom,chebmo, user_data);
     *neval += nev;
     fact *= P;
     errsum += erlst[lst];

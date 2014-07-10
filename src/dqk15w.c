@@ -2,9 +2,9 @@
 #include <math.h>
 #include "cquadpak.h"
 
-double G_K15W(double f(),double w(),double p1,double p2,double p3,
+double G_K15W(dq_function_type f,double w(),double p1,double p2,double p3,
     double p4,int kp,double a,double b,double *abserr,
-    double *resabs,double *resasc)
+    double *resabs,double *resasc, void* user_data)
 {
     static long double XGK15[8] = {
         0.99145537112081263921,
@@ -39,7 +39,7 @@ double G_K15W(double f(),double w(),double p1,double p2,double p3,
     hlgth = 0.5 * (b - a);
     dhlgth = fabs(hlgth);
 
-    fc=(*f)(centr) * (*w)(centr,p1,p2,p3,p4,kp);
+    fc=(*f)(centr, user_data) * (*w)(centr,p1,p2,p3,p4,kp);
     resg = fc * WG7[3];
     resk = fc * WGK15[7];
     *resabs = fabs(resk);
@@ -48,8 +48,8 @@ double G_K15W(double f(),double w(),double p1,double p2,double p3,
         absc = hlgth * XGK15[jtw];
         absc1 = centr - absc;
         absc2 = centr + absc;
-        fval1 = (*f)(absc1) * (*w)(absc1,p1,p2,p3,p4,kp);
-        fval2 = (*f)(absc2) * (*w)(absc2,p1,p2,p3,p4,kp);
+        fval1 = (*f)(absc1, user_data) * (*w)(absc1, p1, p2, p3, p4, kp);
+        fval2 = (*f)(absc2, user_data) * (*w)(absc2, p1, p2, p3, p4, kp);
         fv1[jtw] = fval1;
         fv2[jtw] = fval2;
         fsum = fval1 + fval2;
@@ -62,8 +62,8 @@ double G_K15W(double f(),double w(),double p1,double p2,double p3,
         absc = hlgth * XGK15[jtwm1];
         absc1 = centr - absc;
         absc2 = centr + absc;
-        fval1 = (*f)(absc1) * (*w)(absc1,p1,p2,p3,p4,kp);
-        fval2 = (*f)(absc2) * (*w)(absc2,p1,p2,p3,p4,kp);
+        fval1 = (*f)(absc1, user_data) * (*w)(absc1, p1, p2, p3, p4, kp);
+        fval2 = (*f)(absc2, user_data) * (*w)(absc2, p1, p2, p3, p4, kp);
         fv1[jtwm1] = fval1;
         fv2[jtwm1] = fval2;
         fsum = fval1 + fval2;

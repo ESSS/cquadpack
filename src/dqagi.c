@@ -37,8 +37,8 @@
  *
  *    epsrel - relative accuracy requested.
  */
-double dqagi(double f(),double bound,int inf,double epsabs,
-    double epsrel,double *abserr,int *neval,int *ier)
+double dqagi(dq_function_type f,double bound,int inf,double epsabs,
+    double epsrel,double *abserr,int *neval,int *ier, void* user_data)
 {
     double abseps,area,area1,area12,area2,a1,a2,b1,b2;
     double boun,correc,defabs,defab1,defab2,dres,erlarg;
@@ -71,7 +71,7 @@ double dqagi(double f(),double bound,int inf,double epsabs,
     boun = bound;
     if (inf == 2) boun = 0.0;
 
-    result = G_K15I(f,boun,inf,0.0,1.0,abserr,&defabs,&resabs);
+    result = G_K15I(f,boun,inf,0.0,1.0,abserr,&defabs,&resabs, user_data);
 
 /* Test on accuracy. */
     last = 0;
@@ -114,8 +114,8 @@ double dqagi(double f(),double bound,int inf,double epsabs,
         a2 = b1;
         b2 = blist[maxerr];
         erlast = errmax;
-        area1 = G_K15I(f,boun,inf,a1,b1,&error1,&resabs,&defab1);
-        area2 = G_K15I(f,boun,inf,a2,b2,&error2,&resabs,&defab2);
+        area1 = G_K15I(f,boun,inf,a1,b1,&error1,&resabs,&defab1, user_data);
+        area2 = G_K15I(f,boun,inf,a2,b2,&error2,&resabs,&defab2, user_data);
 
 /* Improve previous approxminations to integral and error
       and test for accuracy. */
@@ -239,6 +239,7 @@ _80:
         ertest = errbnd;
         rlist2[0] = area;
 _90:
+        ;
     }                    /* 90: */
 _100:
     if (*abserr == oflow) goto _115;

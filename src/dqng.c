@@ -2,8 +2,8 @@
 #include <math.h>
 #include "cquadpak.h"
 
-double dqng(double f(),double a,double b,double epsabs,
-    double epsrel,double *abserr,int *neval,int *ier)
+double dqng(dq_function_type f,double a,double b,double epsabs,
+    double epsrel,double *abserr,int *neval,int *ier, void* user_data)
 {
     static long double x1[5] = {
         0.97390652851717172008,
@@ -156,7 +156,7 @@ double dqng(double f(),double a,double b,double epsabs,
     hlgth = 0.5 * (b - a);
     dhlgth = fabs(hlgth);
     centr = 0.5 * (a + b);
-    fcentr=(*f)(centr);
+    fcentr=(*f)(centr, user_data);
     *neval = 21;
     *ier = 1;
 
@@ -168,8 +168,8 @@ double dqng(double f(),double a,double b,double epsabs,
                 resabs = w21b[5] * fabs(fcentr);
                 for (k = 0;k < 5; k++) {
                     absc = hlgth * x1[k];
-                    fval1 = (*f)(centr+absc);
-                    fval2 = (*f)(centr-absc);
+                    fval1 = (*f)(centr+absc, user_data);
+                    fval2 = (*f)(centr-absc, user_data);
                     fval = fval1 + fval2;
                     res10 += (w10[k] * fval);
                     res21 += (w21a[k] * fval);
@@ -183,8 +183,8 @@ double dqng(double f(),double a,double b,double epsabs,
                 for (k = 0; k < 5; k++) {
                     ipx++;
                     absc = hlgth * x2[k];
-                    fval1 = (*f)(centr + absc);
-                    fval2 = (*f)(centr - absc);
+                    fval1 = (*f)(centr + absc, user_data);
+                    fval2 = (*f)(centr - absc, user_data);
                     fval = fval1 + fval2;
                     res21 += (w21b[k] * fval);
                     resabs += (w21b[k] *
@@ -212,7 +212,7 @@ double dqng(double f(),double a,double b,double epsabs,
                 for (k = 0; k < 11; k++) {
                     ipx++;
                     absc = hlgth * x3[k];
-                    fval = (*f)(centr+absc) + (*f)(centr-absc);
+                    fval = (*f)(centr+absc, user_data) + (*f)(centr-absc, user_data);
                     res43 += (fval * w43b[k]);
                     savfun[ipx] = fval;
                 }
@@ -227,7 +227,7 @@ double dqng(double f(),double a,double b,double epsabs,
                 for (k = 0; k < 22; k++) {
                     absc = hlgth * x4[k];
                     res87 += w87b[k] *
-                        ((*f)(centr+absc) + (*f)(centr-absc));
+                        ((*f)(centr+absc, user_data) + (*f)(centr-absc, user_data));
                 }
                 result = res87 * hlgth;
                 *abserr = fabs((res87 - res43) * hlgth);

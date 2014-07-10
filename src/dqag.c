@@ -38,13 +38,13 @@
  *        irule = 5 -- G_K 25-51
  *        irule = 6 -- G_K 30-61
  */
-double dqag(double f(),double a,double b,double epsabs,
-    double epsrel,int irule,double *abserr,int *neval,int *ier)
+double dqag(dq_function_type f,double a,double b,double epsabs,
+    double epsrel,int irule,double *abserr,int *neval,int *ier, void* user_data)
 {
     double result;
     int last;
 
-    result = dqage(f,a,b,epsabs,epsrel,irule,abserr,neval,ier,&last);
+    result = dqage(f,a,b,epsabs,epsrel,irule,abserr,neval,ier,&last, user_data);
 
     return result;
 }

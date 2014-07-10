@@ -27,9 +27,9 @@
  *      epsrel  - relative accuracy requested.
  *
  */
-double dqawse(double f(),double a,double b,double alfa,double beta,
+double dqawse(dq_function_type f,double a,double b,double alfa,double beta,
         int wgtfunc,double epsabs,double epsrel,double *abserr,
-        int *neval,int *ier)
+        int *neval,int *ier, void* user_data)
 {
     double alist[LIMIT],blist[LIMIT],rlist[LIMIT],elist[LIMIT];
     double ri[25],rj[25],rh[25],rg[25];
@@ -56,13 +56,13 @@ double dqawse(double f(),double a,double b,double alfa,double beta,
 /*  Compute the modified Chebyshev moments. */
     dqmomo(alfa,beta,ri,rj,rg,rh,wgtfunc);
 
-/*  Integrate over the invervals (a,(a+b)/2) and ((a+b)/2,b). */
+/*  Integrate over the intervals (a,(a+b)/2) and ((a+b)/2,b). */
     centre = 0.5 * (a+b);
     area1 = dqc25s(f,a,b,a,centre,alfa,beta,ri,rj,rg,rh,&error1,
-        &resas1,wgtfunc,&nev);
+        &resas1,wgtfunc,&nev, user_data);
     *neval = *neval + nev;
     area2 = dqc25s(f,a,b,centre,b,alfa,beta,ri,rj,rg,rh,&error2,
-        &resas2,wgtfunc,&nev);
+        &resas2,wgtfunc,&nev, user_data);
     *neval = *neval + nev;
     result = area1 + area2;
     *abserr = error1 + error2;
@@ -111,10 +111,10 @@ double dqawse(double f(),double a,double b,double alfa,double beta,
         b2 = blist[maxerr];
 
         area1 = dqc25s(f,a,b,a1,b1,alfa,beta,ri,rj,rg,rh,&error1,
-                &resas1,wgtfunc,&nev);
+                &resas1,wgtfunc,&nev, user_data);
         *neval = *neval + nev;
         area2 = dqc25s(f,a,b,a2,b2,alfa,beta,ri,rj,rg,rh,&error2,
-                &resas2,wgtfunc,&nev);
+                &resas2,wgtfunc,&nev, user_data);
         *neval = *neval + nev;
 
 /*  Improve previous approximation and error test for accuracy. */

@@ -34,8 +34,8 @@
  *
  *    epsrel - relative accuracy requested.
  */
-double dqagp(double f(),double a,double b,int npts2,double *points,
-    double epsabs,double epsrel,double *abserr,int *neval,int *ier)
+double dqagp(dq_function_type f,double a,double b,int npts2,double *points,
+    double epsabs,double epsrel,double *abserr,int *neval,int *ier, void* user_data)
 {
     double abseps,alist[LIMIT],area,area1,area12,area2;
     double a1,a2,blist[LIMIT],b1,b2,correc,defabs,defab1;
@@ -88,6 +88,7 @@ _15:
             pts[i] = pts[j];
             pts[j] = temp;
 _20:
+            ;
         }
     }
     if ((pts[0] != min(a,b)) || (pts[nintp1-1] != max(a,b)))
@@ -100,7 +101,7 @@ _40:
     resabs = 0.0;
     for (i = 0; i < nint; i++) {
         b1 = pts[i+1];
-        area1 = G_K21(f,a1,b1,&error1,&defabs,&resa);
+        area1 = G_K21(f,a1,b1,&error1,&defabs,&resa, user_data);
         *abserr = *abserr + error1;
         result = result + area1;
         ndin[i] = 0;
@@ -141,12 +142,14 @@ _40:
             ind1 = ind2;
             k = j;
 _60:
+            ;
         }
         if (ind1 == iord[i])
             goto _70;
         iord[k] = iord[i];
         iord[i] = ind1;
 _70:
+        ;
     }
     if (limit < npts2)
         *ier = 1;
@@ -191,8 +194,8 @@ _80:
         a2 = b1;
         b2 = blist[maxerr];
         erlast = errmax;
-        area1 = G_K21(f,a1,b1,&error1,&resa,&defab1);
-        area2 = G_K21(f,a2,b2,&error2,&resa,&defab2);
+        area1 = G_K21(f,a1,b1,&error1,&resa,&defab1, user_data);
+        area2 = G_K21(f,a2,b2,&error2,&resa,&defab2, user_data);
 /* Improve previous approximations to integral and error
       and test for accuracy. */
           *neval += 42;
@@ -313,6 +316,7 @@ _155:
         levmax += 1.0;
         erlarg = errsum;
 _160:
+        ;
     }
 _170:
     if (*abserr == oflow) goto _190;

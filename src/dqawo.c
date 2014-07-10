@@ -5,9 +5,9 @@
 #include <malloc.h>
 #include "cquadpak.h"
 
-double dqawo(double f(),double a,double b,double omega, int sincos,
+double dqawo(dq_function_type f,double a,double b,double omega, int sincos,
     double epsabs,double epsrel,double *abserr,int *neval,
-    int *ier)
+    int *ier, void* user_data)
 {
     double **chebmo,res3a[52],result,rlist2[52];
     int i,momcom;
@@ -25,7 +25,7 @@ double dqawo(double f(),double a,double b,double omega, int sincos,
 
     momcom = 0;
     result = dqfour(f,a,b,omega,sincos,epsabs,epsrel,
-        1,MAXP1,abserr,neval,ier,&momcom,chebmo);
+        1,MAXP1,abserr,neval,ier,&momcom,chebmo, user_data);
     for (i = 0;i < MAXP1; i++)
         free(chebmo[i]);
     free(chebmo);

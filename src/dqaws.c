@@ -28,13 +28,13 @@
  *      epsrel  - relative accuracy requested.
  *
  */
-double dqaws(double f(),double a,double b,double alfa,double beta,
+double dqaws(dq_function_type f,double a,double b,double alfa,double beta,
         int wgtfunc,double epsabs,double epsrel,double *abserr,
-        int *neval,int *ier)
+        int *neval,int *ier, void* user_data)
 {
     double result;
 
     result = dqawse(f,a,b,alfa,beta,wgtfunc,epsabs,epsrel,abserr,
-                neval,ier);
+                neval,ier, user_data);
     return result;
 }

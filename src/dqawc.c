@@ -25,12 +25,12 @@
  *
  *      ier     -   error code
  */
-double dqawc(double f(),double a,double b,double c,double epsabs,
-    double epsrel,double *abserr,int *neval,int *ier)
+double dqawc(dq_function_type f,double a,double b,double c,double epsabs,
+    double epsrel,double *abserr,int *neval,int *ier, void* user_data)
 {
         double result;
 
-        result = dqawce(f,a,b,c,epsabs,epsrel,abserr,neval,ier);
+        result = dqawce(f,a,b,c,epsabs,epsrel,abserr,neval,ier, user_data);
         return result;
 }
 
