@@ -68,7 +68,7 @@ double dqwgts(double x,double a,double b,double alpha,double beta,
 void dqcheb(double *x,double *fval,double *cheb12,double *cheb24);
 double dqc25o(double f(),double a,double b,double omega,int integr,
     int nrmom,int maxp1,int ksave,double *abserr,int *neval,
-    double *resabs,double *resasc,int *momcom,double **chebmo);        
+    double *resabs,double *resasc,int *momcom,double **chebmo);
 double dqfour(double f(),double a,double b,double omega,int integr,
     double epsabs,double epsrel,int icall,int maxp1,
     double *abserr,int *neval,int *ier,int *momcom,

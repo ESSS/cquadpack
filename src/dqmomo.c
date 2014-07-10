@@ -7,7 +7,7 @@ void dqmomo(double alpha,double beta,double ri[],double rj[],
 {
     double alfp1,alfp2,an,anm1,betp1,betp2,ralf,rbet;
     int i,im1;
-    
+
     alfp1 = alpha + 1.0;
     betp1 = beta + 1.0;
     alfp2 = alpha + 2.0;
@@ -44,7 +44,7 @@ void dqmomo(double alpha,double beta,double ri[],double rj[],
         rg[i] = -(an * (an - alfp2) * rg[im1] - an * ri[im1] +
             anm1 * ri[i]) / (anm1 * (an + alfp1));
         anm1 = an;
-        an += 1.0;        
+        an += 1.0;
         im1 = i;
     }
     if (wgtfunc == 2)

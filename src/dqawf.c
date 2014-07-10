@@ -24,7 +24,7 @@
  *
  *    epsabs - absolute accuracy requested.
  *
- */     
+ */
 double dqawf(double f(),double a,double omega,int sincos,
     double epsabs,double *abserr,int *neval,int *ier)
 {
@@ -48,23 +48,23 @@ double dqawf(double f(),double a,double omega,int sincos,
     *neval = 0;
     result = 0.0;
     *abserr = 0.0;
-    
+
 /* Dimensioning parameters.
- *    limlst - upper bound on number of cycles,    
+ *    limlst - upper bound on number of cycles,
  *    MAXP1 - upper bound on the number of Chebyshev moments.
  */
      limlst = 50;
-     
+
  /* Check validity of limlst and MAXP1. */
      if ((limlst < 3) || (MAXP1 < 1))
          goto _10;
-    
+
 /* Prepare call for dqawfe. */
     result=dqawfe(f,a,omega,sincos,epsabs,limlst,MAXP1,
         abserr,neval,ier,rslst,erlst,ierlst,chebmo);
 _10:
     for (i = 0; i < MAXP1; i++)
         free(chebmo[i]);
-    free(chebmo); 
+    free(chebmo);
     return result;
-}    
+}

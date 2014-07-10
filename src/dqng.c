@@ -47,7 +47,7 @@ double dqng(double f(),double a,double b,double epsabs,
         0.49947957407105649995,
         0.36490166134658076804,
         0.22225491977660129650,
-        0.07465061746138332204};                
+        0.07465061746138332204};
     static long double w43a[10] = {
         0.01629673428966656492,
         0.03752287612086950146,
@@ -147,7 +147,7 @@ double dqng(double f(),double a,double b,double epsabs,
     double result,res10,res21,res43,res87;
     double resabs,resasc,reskh;
     int ipx,k,l;
-    
+
     result = 0.0;
     *abserr = 0.0;
     *neval = 0;
@@ -226,7 +226,7 @@ double dqng(double f(),double a,double b,double epsabs,
                     res87 += (savfun[k] * w87a[k]);
                 for (k = 0; k < 22; k++) {
                     absc = hlgth * x4[k];
-                    res87 += w87b[k] * 
+                    res87 += w87b[k] *
                         ((*f)(centr+absc) + (*f)(centr-absc));
                 }
                 result = res87 * hlgth;

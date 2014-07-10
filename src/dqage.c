@@ -27,7 +27,7 @@
  *        irule = 6 -- G_K 30-61
  *
  *    limit - maximum number of subintervals.
- */     
+ */
 double dqage(double f(),double a,double b,double epsabs,double epsrel,
     int irule,double *abserr,int *neval,int *ier,int *last)
 {
@@ -36,7 +36,7 @@ double dqage(double f(),double a,double b,double epsabs,double epsrel,
     double erro12,errsum,resabs,result;
     double alist[LIMIT],blist[LIMIT],rlist[LIMIT],elist[LIMIT];
     int iroff1,iroff2,k,keyf,maxerr,nrmax,iord[LIMIT],limit;
-    
+
     limit = LIMIT - 1;
     *ier = 0;
     *neval = 0;
@@ -52,7 +52,7 @@ double dqage(double f(),double a,double b,double epsabs,double epsrel,
     resabs = 0.0;
     if ((epsabs < 0.0) && (epsrel < 0.0))
         *ier = 6;
-    if (*ier == 6) return result; 
+    if (*ier == 6) return result;
 
 /* First approximation to the integral. */
     keyf = irule;
@@ -61,7 +61,7 @@ double dqage(double f(),double a,double b,double epsabs,double epsrel,
     c = keyf;
     *neval = 0;
     switch (keyf) {
-        case 1: 
+        case 1:
             result = G_K15(f,a,b,abserr,&defabs,&resabs);
             break;
         case 2:
@@ -84,7 +84,7 @@ double dqage(double f(),double a,double b,double epsabs,double epsrel,
     rlist[0] = result;
     elist[0] = *abserr;
     iord[0] = 0;
-    
+
 /* Test on accuracy. */
     errbnd = max(epsabs,epsrel * fabs(result));
     if ((*abserr <= 50.0 * epmach * defabs) && (*abserr > errbnd))
@@ -92,7 +92,7 @@ double dqage(double f(),double a,double b,double epsabs,double epsrel,
     if (limit == 0) *ier = 1;
     if ((*ier != 0) || ((*abserr <= errbnd) && (*abserr != resabs)) ||
         (*abserr == 0.0)) goto _60;
-    
+
 /* Initialization. */
     errmax = *abserr;
     maxerr = 0;
@@ -101,7 +101,7 @@ double dqage(double f(),double a,double b,double epsabs,double epsrel,
     nrmax = 0;
     iroff1 = 0;
     iroff2 = 0;
-    
+
 /* Main Loop. */
     for (*last = 1; *last <= limit; (*last)++) {
 /* Bisect the subinterval with the largest error estimate. */
@@ -145,9 +145,9 @@ double dqage(double f(),double a,double b,double epsabs,double epsrel,
         area = area + area12 - rlist[maxerr];
         if ((defab1 != error1) && (defab2 != error2)) {
             if ((fabs(rlist[maxerr]-area12) <= 1.0e-5 * fabs(area12)) &&
-                (erro12 >= .99 * errmax)) 
+                (erro12 >= .99 * errmax))
                     iroff1++;
-            if ((*last > 9) && (erro12 > errmax)) 
+            if ((*last > 9) && (erro12 > errmax))
                 iroff2++;
         }
         rlist[maxerr] = area1;
@@ -156,14 +156,14 @@ double dqage(double f(),double a,double b,double epsabs,double epsrel,
         if (errsum > errbnd)  {
 
 /* Test for roundoff error and eventually set error flag. */
-            if ((iroff1 > 6) || (iroff2 > 20))  
+            if ((iroff1 > 6) || (iroff2 > 20))
                 *ier = 2;
 
 /* Set error flag in the case that the number of subintervals
     equals the limit. */
             if (*last == limit)
                 *ier = 1;
-            
+
 /* Set error flag in the case of bad integrand behavior at a
     point of the integration range. */
             if (max(fabs(a1),fabs(b2)) <= (1.0 + c * 1000.0 * epmach) *
@@ -188,7 +188,7 @@ double dqage(double f(),double a,double b,double epsabs,double epsrel,
             elist[maxerr] = error2;
             elist[*last] = error1;
         }
-    
+
 /* Call DQSORT to maintain the descending ordering in the list of
     error estimates and select the subinterval with the
     largest error estimate (to be bisected next). */
@@ -196,7 +196,7 @@ double dqage(double f(),double a,double b,double epsabs,double epsrel,
         dqsort(limit,*last,&maxerr,&errmax,elist,iord,&nrmax);
         if ((*ier != 0) || (errsum <= errbnd)) break;
     }
-    
+
 /* Compute final result. */
 
     result = 0.0;
@@ -211,4 +211,4 @@ _60:
         *neval = 30 * (*neval) + 15;
 
     return result;
-}    
+}

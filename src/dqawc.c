@@ -33,4 +33,4 @@ double dqawc(double f(),double a,double b,double c,double epsabs,
         result = dqawce(f,a,b,c,epsabs,epsrel,abserr,neval,ier);
         return result;
 }
-        
+

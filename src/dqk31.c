@@ -48,13 +48,13 @@ double G_K31(double f(),double a,double b,double *abserr,
         0.18616100001556221103,
         0.19843148532711157646,
         0.20257824192556127288};
-        
+
     double fv1[15],fv2[15];
     double absc,centr,dhlgth,dmax1,dmin1;
     double fc,fsum,fval1,fval2,hlgth;
     double resg,resk,reskh,result;
     int j,jtw,jtwm1;
-    
+
     centr = 0.5 * (a + b);
     hlgth = 0.5 * (b - a);
     dhlgth = fabs(hlgth);
@@ -98,6 +98,6 @@ double G_K31(double f(),double a,double b,double *abserr,
     if ((*resasc != 0.0) && (*abserr != 0.0))
         *abserr = (*resasc) * min(1.0,pow((200.0 * (*abserr)/(*resasc)),1.5));
     if (*resabs > uflow/(50.0 * epmach))
-        *abserr = max(epmach * 50.0 * (*resabs),(*abserr));     
+        *abserr = max(epmach * 50.0 * (*resabs),(*abserr));
     return result;
 }

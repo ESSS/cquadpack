@@ -10,7 +10,7 @@ double dqext(int *n,double epstab[],double *abserr,
     double error,err1,err2,err3,e0,e1,e1abs,e2,e3;
     double res,result,ss,tol1,tol2,tol3;
     int NN,i,ib,ib2,ie,indx,k1,k2,k3,limexp,newelm,num;
-    
+
     (*nres)++;
     NN = *n;
     NN++;   /* make NN a FORTRAN array index */
@@ -56,7 +56,7 @@ _20:
         goto _50;
 _30:
         res = e1 + 1.0 / ss;
-        epstab[k1-1] = res; 
+        epstab[k1-1] = res;
         k1 -= 2;
         error = err2 + fabs(res - e2) + err3;
         if (error > (*abserr)) goto _40;
@@ -97,4 +97,4 @@ _100:
     return result;
     }
 
-            
+

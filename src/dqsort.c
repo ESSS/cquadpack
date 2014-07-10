@@ -35,7 +35,7 @@ _30:
         if (errmax >= elist[isucc]) goto _60;
         iord[i-1] = isucc;
     }
-_50: 
+_50:
     iord[jbnd] = *maxerr;
     iord[jupbn] = last;
     goto _90;
@@ -55,6 +55,6 @@ _80:
 _90:
     *maxerr = iord[*nrmax];
     *ermax = elist[*maxerr];
-    return;  
-}    
+    return;
+}
 

@@ -93,7 +93,7 @@ double G_K61(double f(),double a,double b,double *abserr,
     double fc,fsum,fval1,fval2,hlgth;
     double resg,resk,reskh,result;
     int j,jtw,jtwm1;
-    
+
     centr = 0.5 * (a + b);
     hlgth = 0.5 * (b - a);
     dhlgth = fabs(hlgth);
@@ -137,6 +137,6 @@ double G_K61(double f(),double a,double b,double *abserr,
     if ((*resasc != 0.0) && (*abserr != 0.0))
         *abserr = (*resasc) * min(1.0,pow((200.0 * (*abserr)/(*resasc)),1.5));
     if (*resabs > uflow/(50.0 * epmach))
-        *abserr = max(epmach * 50.0 * (*resabs),(*abserr));     
+        *abserr = max(epmach * 50.0 * (*resabs),(*abserr));
     return result;
 }

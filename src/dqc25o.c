@@ -26,7 +26,7 @@ double dqc25o(double f(),double a,double b,double omega,int sincos,
     double cheb12[13],cheb24[25],c[28],d[28],d1[28],d2[28];
     double d3[28],fval[25],v[28];
     int i,isym,j,k,m,noequ,noeq1;
-    
+
     centr = 0.5 * (b + a);
     hlgth = 0.5 * (b - a);
     parint = omega * hlgth;
@@ -41,14 +41,14 @@ double dqc25o(double f(),double a,double b,double omega,int sincos,
               abserr,resabs,resasc);
      *neval = 15;
      goto _190;
-     
+
  /* Compute the integral using the generalized Clenshaw-Curtis method. */
  _10:
     conc = hlgth * cos(centr * omega);
     cons = hlgth * sin(centr * omega);
      *resasc = oflow;
     *neval = 25;
-    
+
 /* Check whether the Chebyshev moments for this interval have
  * already been computed.
  */
@@ -59,12 +59,12 @@ double dqc25o(double f(),double a,double b,double omega,int sincos,
 /*** Add variable mm1 to ease transliteration from FORTRAN array
  *** indexing to C indexing.
  ***/
-    mm1 = m - 1;    
+    mm1 = m - 1;
     par2 = parint * parint;
     par22 = par2 + 2.0;
     sinpar = sin(parint);
     cospar = cos(parint);
-    
+
 /* Compute the Chebyshev moments with respect to cosine. */
     v[0] = 2.0 * sinpar / parint;
     v[1] = (8.0 * cospar + (par2 + par2 - 8.0) * sinpar / parint) / par2;
@@ -73,7 +73,7 @@ double dqc25o(double f(),double a,double b,double omega,int sincos,
     ac = 8.0 * cospar;
     as = 24.0 * parint * sinpar;
     if (fabs(parint) > 24.0) goto _70;
-    
+
 /* Compute the Chebyshev moments as the solutions of a boundary
  * value problem with 1 initial value (v[2]) and 1 end value
  * (computed using an asymptotic formula).
@@ -161,7 +161,7 @@ _90:
             0.25 * parint * (v[k+1] / an - v[k] / (an - 1.0));
     }
     goto _140;
-    
+
 /* Compute the Chebyshev moments by means of forward recursion. */
 _120:
     an = 3.0;
@@ -219,7 +219,7 @@ _140:
         ress24 += (cheb24[k+1] * chebmo[mm1][k+1]);
         *resabs += (fabs(cheb24[k]) + fabs(cheb24[k+1]));
         if (j <= 4) {
-            estc += (fabs(cheb24[k] * chebmo[mm1][k]));   
+            estc += (fabs(cheb24[k] * chebmo[mm1][k]));
             ests += (fabs(cheb24[k+1] * chebmo[mm1][k+1]));
         }
         k -= 2;

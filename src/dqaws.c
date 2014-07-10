@@ -27,7 +27,7 @@
  *
  *      epsrel  - relative accuracy requested.
  *
- */      
+ */
 double dqaws(double f(),double a,double b,double alfa,double beta,
         int wgtfunc,double epsabs,double epsrel,double *abserr,
         int *neval,int *ier)

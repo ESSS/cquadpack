@@ -10,7 +10,7 @@ double dqwgtc(double x,double c,double p2,double p3,double p4,int kp)
 double dqwgto(double x,double omega,double p2,double p3,double p4,int wgtfunc)
 {
     double omx;
-    
+
     omx = omega * x;
     if (wgtfunc == 1)
         return cos(omx);
@@ -21,7 +21,7 @@ double dqwgto(double x,double omega,double p2,double p3,double p4,int wgtfunc)
 double dqwgts(double x,double a,double b,double alpha,double beta,int wgtfunc)
 {
     double bmx,xma,result;
-    
+
     xma = x - a;
     bmx = b - x;
     result = pow(xma,alpha) * pow(bmx,beta);

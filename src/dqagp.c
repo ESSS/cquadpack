@@ -3,7 +3,7 @@
 #include "cquadpak.h"
 
 /* DQAGP - Integration over finite intervals. (From QUADPACK)
- *       Accepts a list of known singularities.    
+ *       Accepts a list of known singularities.
  *
  *    Adaptive integration routine which handles functions
  *    to be integrated between two finite bounds.
@@ -28,12 +28,12 @@
  *    npts2 - number equal to 2 more than the number of sinularities.
  *
  *    points - vector of dimension npts2, the first (npts2-2) elements
- *         of which are the user provided interior break points. 
+ *         of which are the user provided interior break points.
  *
  *    epsabs - absolute accuracy requested.
  *
  *    epsrel - relative accuracy requested.
- */     
+ */
 double dqagp(double f(),double a,double b,int npts2,double *points,
     double epsabs,double epsrel,double *abserr,int *neval,int *ier)
 {
@@ -47,10 +47,10 @@ double dqagp(double f(),double a,double b,int npts2,double *points,
     int i,id,ierro,ind1,ind2,ip1,iord[LIMIT],iroff1,iroff2,iroff3;
     int j,jlow,jupbnd,k,ksgn,ktmin,last,levcur,level[LIMIT],levmax;
     int maxerr,nint,nintp1,npts,nres,nrmax,numrl2,limit,extrap,noext;
-    
+
     limit = LIMIT - 1;
 
-/* Test validity of parameters. */    
+/* Test validity of parameters. */
     *ier = 0;
     *neval = 0;
     last = 0;
@@ -65,7 +65,7 @@ double dqagp(double f(),double a,double b,int npts2,double *points,
     npts = npts2-2;
     if ((npts2 < 2) || (limit < npts) || ((epsabs < 0.0) &&
         (epsrel < 0.0))) *ier = 6;
-    if (*ier == 6) goto _999; 
+    if (*ier == 6) goto _999;
 
 /* If any break points are provided, sort them into an ascending sequence. */
     sign = (a < b) ? 1.0 : -1.0;
@@ -94,7 +94,7 @@ _20:
         *ier = 6;
     if (*ier == 6)
         goto _999;
-            
+
 /* Compute first integral and error approximations. */
 _40:
     resabs = 0.0;
@@ -118,7 +118,7 @@ _40:
     errsum = 0.0;
     for (i = 0; i < nint; i++) {
         if (ndin[i] == 1)
-            elist[i] = *abserr; 
+            elist[i] = *abserr;
         errsum += elist[i];
     }
 
@@ -153,7 +153,7 @@ _70:
 _80:
     if ((*ier != 0) || (*abserr <= errbnd))
         goto _999;
-        
+
 /* Initialization. */
     res3la[0] = 0.0;
     res3la[1] = 0.0;
@@ -183,7 +183,7 @@ _80:
 
 /* Main loop. */
     for (last = npts2; last <= limit; last++) {
-        
+
 /* Bisect the interval with the nrmax-th largest error estimate. */
         levcur = level[maxerr] + 1;
         a1 = alist[maxerr];
@@ -200,7 +200,7 @@ _80:
         erro12 = error1 + error2;
         errsum = errsum + erro12 - errmax;
         area = area + area12 - rlist[maxerr];
-        if ((defab1 == error1) || (defab2 == error2)) goto _95; 
+        if ((defab1 == error1) || (defab2 == error2)) goto _95;
         if ((fabs(rlist[maxerr] - area12) > 1.0e-5 * fabs(area12))
             || (erro12 < .99 * errmax)) goto _90;
         if (extrap) iroff2++;
@@ -214,7 +214,7 @@ _95:
         rlist[maxerr] = area1;
         rlist[last] = area2;
         errbnd = max(epsabs,epsrel * fabs(area));
-        
+
 /* Test for roundoff error and eventually set error flag. */
         if (((iroff1 + iroff2) >= 10) || (iroff3 >= 20))
             *ier = 2;
@@ -225,11 +225,11 @@ _95:
     equals limit. */
         if (last == limit)    /* last == limit */
             *ier = 1;
-                    
+
 /* Set error flag in the case of bad integrand behavior at some
     points in the integration range. */
         if (max(fabs(a1),fabs(b2)) <= (1.0 +1000.0 * epmach) *
-            (fabs(a2) + 1000.0*uflow)) 
+            (fabs(a2) + 1000.0*uflow))
             *ier = 4;
 
 /* Append the newly-created intervals to the list. */
@@ -261,12 +261,12 @@ _110:
         if (levcur+1 <= levmax)
             erlarg += erro12;
         if (extrap) goto _120;
-        
+
 /* Test whether the interval to be bisected next is the smallest interval. */
         if ((level[maxerr]+1) <= levmax)
             goto _160;
         extrap = TRUE;
-        nrmax = 1;        /* nrmax = 2 */        
+        nrmax = 1;        /* nrmax = 2 */
 _120:
         if ((ierro == 3) || (erlarg <= ertest)) goto _140;
 
@@ -344,5 +344,5 @@ _210:
     if (*ier > 2) (*ier)--;
     result = result * sign;
 _999:
-    return result;    
-}    
+    return result;
+}

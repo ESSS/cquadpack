@@ -8,13 +8,13 @@ void dqcheb(double x[],double fval[],double cheb12[],double cheb24[])
     double alam,alam1,alam2,part1,part2,part3;
     double v[12];
     int i,j;
-    
+
 /* Dimensions of input vectors are:
  *        x[11], fval[25], cheb12[13], cheb24[25]
  */
      for (i = 0; i < 12; i++) {
          j = 24 - i;
-         v[i] = fval[i] - fval[j];    
+         v[i] = fval[i] - fval[j];
          fval[i] += fval[j];
      }
      alam1 = v[0] - v[8];
@@ -103,6 +103,6 @@ void dqcheb(double x[],double fval[],double cheb12[],double cheb24[])
       for (i = 1; i < 24; i ++)
           cheb24[i] *= alam;
       cheb24[0] *= (0.5 * alam);
-      cheb24[24] *= (0.5 * alam);    
+      cheb24[24] *= (0.5 * alam);
 }
 

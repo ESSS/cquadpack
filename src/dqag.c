@@ -37,14 +37,14 @@
  *        irule = 4 -- G_K 20-41
  *        irule = 5 -- G_K 25-51
  *        irule = 6 -- G_K 30-61
- */     
+ */
 double dqag(double f(),double a,double b,double epsabs,
     double epsrel,int irule,double *abserr,int *neval,int *ier)
 {
     double result;
     int last;
-    
-    result = dqage(f,a,b,epsabs,epsrel,irule,abserr,neval,ier,&last); 
+
+    result = dqage(f,a,b,epsabs,epsrel,irule,abserr,neval,ier,&last);
 
     return result;
-}    
+}

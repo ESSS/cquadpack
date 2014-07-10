@@ -27,7 +27,7 @@
  *
  *    maxp1 - upper bound on the number of Chebyshev moments
  *        which can be stored.
- */     
+ */
 double dqawfe(double f(),double a,double omega,int sincos,
     double epsabs,int limlst,int maxp1,
     double *abserr,int *neval,int *ier,double rslst[],
@@ -49,7 +49,7 @@ double dqawfe(double f(),double a,double omega,int sincos,
         (limlst < 3)) *ier = 6;
     if (*ier == 6) goto _999;
     if (omega != 0.0) goto _10;
-    
+
 /* Integration by DQAGI if omega is zero. */
     if (sincos == COSINE)
         result = dqagi(f,0.0,1,epsabs,0.0,abserr,neval,ier);
@@ -57,7 +57,7 @@ double dqawfe(double f(),double a,double omega,int sincos,
     erlst[0] = *abserr;
     ierlst[0] = *ier;
     goto _999;
-    
+
 /* Initialization. */
 _10:
     res3la[0] = 0.0;    /* res3la must be initialized to 0.0 */
@@ -82,7 +82,7 @@ _10:
     correc = 0.0;
     *abserr = 0.0;
     errsum = 0.0;
-    
+
 /* Main Loop */
     for (lst = 0; lst < limlst; lst++) {
 
@@ -95,9 +95,9 @@ _10:
     fact *= P;
     errsum += erlst[lst];
     drl = 50.0 * fabs(rslst[lst]);
-    
+
 /* Test on accuracy with partial sum. */
-    if (((errsum + drl) <= epsabs) && (lst >= 5))    
+    if (((errsum + drl) <= epsabs) && (lst >= 5))
         goto _80;
     correc = max(correc,erlst[lst]);
     if (ierlst[lst] != 0)
@@ -116,17 +116,17 @@ _20:
 
     if (lst == 1)
         goto _40;
-    
+
 /* Test on maximum number of subintervals. */
     if (lst == limlst-1)
         *ier = 8;
-    
+
 /* Perform new extrapolation. */
     reseps=dqext(&numrl2,psum,&abseps,res3la,&nres);
 
 /* Test whether extrapolated result is influenced by roundoff. */
     ktmin++;
-    if ((ktmin >= 15) && (*abserr <= 0.001 * (errsum + drl))) 
+    if ((ktmin >= 15) && (*abserr <= 0.001 * (errsum + drl)))
         *ier = 9;
     if ((abseps > *abserr) && (lst != 2))
         goto _30;
@@ -148,7 +148,7 @@ _40:
     c2 += cycle;
 _50:
     }
-    
+
  /* Set final result and error estimate. */
 _60:
     (*abserr)+=(10.0 * correc);
@@ -171,5 +171,5 @@ _80:
     *abserr = errsum + drl;
 _999:
     return result;
-    
-}    
+
+}

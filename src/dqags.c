@@ -27,7 +27,7 @@
  *    epsabs - absolute accuracy requested.
  *
  *    epsrel - relative accuracy requested.
- */     
+ */
 double dqags(double f(),double a,double b,double epsabs,
     double epsrel,double *abserr,int *neval,int *ier)
 {
@@ -44,7 +44,7 @@ double dqags(double f(),double a,double b,double epsabs,
     int extrap,noext;
 
     limit = LIMIT -1;
-/* Test validity of parameters. */    
+/* Test validity of parameters. */
     *ier = 0;
     *neval = 0;
     result = 0.0;
@@ -65,7 +65,7 @@ double dqags(double f(),double a,double b,double epsabs,
     errbnd = max(epsabs,epsrel*dres);
     last = 1;
     rlist[0] = result;
-    elist[0] = *abserr;    
+    elist[0] = *abserr;
     iord[0] = 0;
     if ((*abserr <= 100.0 * epmach * defabs) && (*abserr > errbnd))
         *ier = 2;
@@ -105,14 +105,14 @@ double dqags(double f(),double a,double b,double epsabs,
         erlast = errmax;
         area1 = G_K21(f,a1,b1,&error1,&resabs,&defab1);
         area2 = G_K21(f,a2,b2,&error2,&resabs,&defab2);
-        
+
 /* Improve previous approxminations to integral and error
       and test for accuracy. */
         area12 = area1 + area2;
         erro12 = error1 + error2;
         errsum = errsum + erro12 - errmax;
         area = area + area12 - rlist[maxerr];
-        if ((defab1 == error1) || (defab2 == error2)) goto _15; 
+        if ((defab1 == error1) || (defab2 == error2)) goto _15;
         if ((fabs(rlist[maxerr] - area12) > 1.0e-5 * fabs(area12))
             || (erro12 < .99 * errmax)) goto _10;
         if (extrap) iroff2++;
@@ -124,7 +124,7 @@ _15:
         rlist[maxerr] = area1;
         rlist[last] = area2;
         errbnd = max(epsabs,epsrel * fabs(area));
-        
+
 /* Test for roundoff error and eventually set error flag. */
         if (((iroff1 + iroff2) >= 10) || (iroff3 >= 20))
             *ier = 2;
@@ -135,11 +135,11 @@ _15:
     equals limit. */
         if (last == limit)    /* last == limit */
             *ier = 1;
-                    
+
 /* Set error flag in the case of bad integrand behavior at some
     points in the integration range. */
         if (max(fabs(a1),fabs(b2)) <= (1.0 +1000.0 * epmach) *
-            (fabs(a2) + 1000.0*uflow)) 
+            (fabs(a2) + 1000.0*uflow))
             *ier = 4;
 
 /* Append the newly-created intervals to the list. */
@@ -172,12 +172,12 @@ _30:
         if (fabs(b1-a1) > small)
             erlarg += erro12;
         if (extrap) goto _40;
-        
+
 /* Test whether the interval to be bisected next is the smallest interval. */
-        if ((fabs(blist[maxerr] - alist[maxerr])) > small) 
+        if ((fabs(blist[maxerr] - alist[maxerr])) > small)
             goto _90;    /* goto 90 */
         extrap = TRUE;
-        nrmax = 1;        /* nrmax = 2 */        
+        nrmax = 1;        /* nrmax = 2 */
 _40:
         if ((ierro == 3) || (erlarg <= ertest)) goto _60;
 
@@ -259,5 +259,5 @@ _130:
     if (*ier > 2) (*ier)--;
 _140:
     *neval = 42 * last - 21;
-    return result;    
-}    
+    return result;
+}

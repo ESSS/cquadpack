@@ -25,7 +25,7 @@ double G_K15I(double f(double),double boun,int inf,double a,double b,
         0.20948214108472782801};
     static long double WG7[4] = {
         0.12948496616886969327,
-        0.27970539148927666790, 
+        0.27970539148927666790,
         0.38183005050511894495,
         0.41795918367346938776};
     double fv1[8],fv2[8];
@@ -33,7 +33,7 @@ double G_K15I(double f(double),double boun,int inf,double a,double b,
     double fc,fsum,fval1,fval2,hlgth,resg,resk;
     double reskh,result,tabsc1,tabsc2;
     int j;
-    
+
     dinf = min((double)(1.0),(double)inf);
     centr = 0.5 * (a + b);
     hlgth = 0.5 * (b - a);
@@ -73,11 +73,11 @@ double G_K15I(double f(double),double boun,int inf,double a,double b,
             abs(fv2[j] - reskh));
     result = resk * hlgth;
     *resabs = (*resabs) * hlgth;
-    *resasc = (*resasc) * hlgth; 
+    *resasc = (*resasc) * hlgth;
     *abserr = abs((resk - resg) * hlgth);
     if ((*resasc != 0.0) && (*abserr != 0.0))
         *abserr = (*resasc) * min(1.0,pow((200.0 * (*abserr)/(*resasc)),1.5));
     if (*resabs > uflow/(50.0 * epmach))
-        *abserr = max(epmach * 50.0 * (*resabs),(*abserr));     
+        *abserr = max(epmach * 50.0 * (*resabs),(*abserr));
     return result;
 }

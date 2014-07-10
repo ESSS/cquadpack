@@ -7,7 +7,7 @@
  *    Adaptive integration routine which handles functions
  *    to be integrated between -infinity to +infinity, or
  *    between either of those limits and some finite,
- *    real boundary. 
+ *    real boundary.
  *
  *    The adaptive strategy compares results of integration
  *    over the interval with the sum of results obtained from
@@ -28,15 +28,15 @@
  *    bound - optional finite bound on integral.
  *
  *    inf - specifies range of integration as follows:
- *        inf = -1 -- range is from -infinity to bound, 
+ *        inf = -1 -- range is from -infinity to bound,
  *        inf =  1 -- range is from bound to +infinity,
  *        inf =  2 -- range is from -infinity to +infinity,
- *                (bound is immaterial in this case).    
+ *                (bound is immaterial in this case).
  *
  *    epsabs - absolute accuracy requested.
  *
  *    epsrel - relative accuracy requested.
- */     
+ */
 double dqagi(double f(),double bound,int inf,double epsabs,
     double epsrel,double *abserr,int *neval,int *ier)
 {
@@ -50,7 +50,7 @@ double dqagi(double f(),double bound,int inf,double epsabs,
     int id,ierro,iord[LIMIT],iroff1,iroff2,iroff3,jupbnd,k,ksgn;
     int ktmin,last,maxerr,nres,nrmax,numrl2;
     int limit,extrap,noext;
-    
+
     limit = LIMIT - 1;
 /* Test validity of parameters. */
     *ier = 0;
@@ -72,11 +72,11 @@ double dqagi(double f(),double bound,int inf,double epsabs,
     if (inf == 2) boun = 0.0;
 
     result = G_K15I(f,boun,inf,0.0,1.0,abserr,&defabs,&resabs);
-    
+
 /* Test on accuracy. */
     last = 0;
     rlist[0] = result;
-    elist[0] = *abserr;    
+    elist[0] = *abserr;
     iord[0] = 0;
     dres = fabs(result);
     errbnd = max(epsabs,epsrel*dres);
@@ -116,14 +116,14 @@ double dqagi(double f(),double bound,int inf,double epsabs,
         erlast = errmax;
         area1 = G_K15I(f,boun,inf,a1,b1,&error1,&resabs,&defab1);
         area2 = G_K15I(f,boun,inf,a2,b2,&error2,&resabs,&defab2);
-        
+
 /* Improve previous approxminations to integral and error
       and test for accuracy. */
         area12 = area1 + area2;
         erro12 = error1 + error2;
         errsum = errsum + erro12 - errmax;
         area = area + area12 - rlist[maxerr];
-        if ((defab1 == error1) || (defab2 == error2)) goto _15; 
+        if ((defab1 == error1) || (defab2 == error2)) goto _15;
         if ((fabs(rlist[maxerr] - area12) > 1.0e-5 * fabs(area12))
             || (erro12 < .99 * errmax)) goto _10;
         if (extrap) iroff2++;
@@ -135,7 +135,7 @@ _15:
         rlist[maxerr] = area1;
         rlist[last] = area2;
         errbnd = max(epsabs,epsrel * fabs(area));
-        
+
 /* Test for roundoff error and eventually set error flag. */
         if (((iroff1 + iroff2) >= 10) || (iroff3 >= 20))
             *ier = 2;
@@ -146,11 +146,11 @@ _15:
     equals limit. */
         if (last == limit)    /* last == limit */
             *ier = 1;
-                    
+
 /* Set error flag in the case of bad integrand behavior at some
     points in the integration range. */
         if (max(fabs(a1),fabs(b2)) <= (1.0 +1000.0 * epmach) *
-            (fabs(a2) + 1000.0*uflow)) 
+            (fabs(a2) + 1000.0*uflow))
             *ier = 4;
 
 /* Append the newly-created intervals to the list. */
@@ -183,12 +183,12 @@ _15:
         if (fabs(b1-a1) > small)
             erlarg += erro12;
         if (extrap) goto _40;
-        
+
 /* Test whether the interval to be bisected next is the smallest interval. */
-        if ((fabs(blist[maxerr] - alist[maxerr])) > small) 
+        if ((fabs(blist[maxerr] - alist[maxerr])) > small)
             goto _90;
         extrap = TRUE;
-        nrmax = 1;        /* nrmax = 2 */        
+        nrmax = 1;        /* nrmax = 2 */
 _40:
         if ((ierro == 3) || (erlarg <= ertest)) goto _60;
 
@@ -270,5 +270,5 @@ _130:
     *neval = 30 * last + 15;
     if (inf == 2) *neval *= 2;
     if (*ier > 2) (*ier)--;
-    return result;    
-}    
+    return result;
+}

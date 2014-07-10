@@ -30,7 +30,7 @@
  *    limit - upper bound on number of of subdivisions in
  *        the partition of (A,B)
  *
- */     
+ */
 
 double dqfour(double f(),double a,double b,double omega,
     int sincos,double epsabs,double epsrel,
@@ -49,7 +49,7 @@ double dqfour(double f(),double a,double b,double omega,
     int id,ierro,iroff1,iroff2,iroff3,jupbnd,k,ksgn,limit;
     int ktmin,last,maxerr,nev,nres,nrmax,nrmom,numrl2;
     int extrap,noext,extall,iord[LIMIT],nnlog[LIMIT];
-    
+
     limit = LIMIT - 1;
 /* Test validity of parameters. */
     *ier = 0;
@@ -70,7 +70,7 @@ double dqfour(double f(),double a,double b,double omega,
 /* First approximation to the integral. */
     domega = fabs(omega);
     nrmom = 0;
-    if (icall <= 1) 
+    if (icall <= 1)
         *momcom = 0;
 _5:
     result = dqc25o(f,a,b,domega,sincos,nrmom,maxp1,0,
@@ -79,7 +79,7 @@ _5:
     dres = fabs(result);
     errbnd = max(epsabs,epsrel*dres);
     rlist[0] = result;
-    elist[0] = *abserr;    
+    elist[0] = *abserr;
     iord[0] = 0;
     if ((*abserr <= 100.0 * epmach * defabs) && (*abserr > errbnd))
         *ier = 2;
@@ -140,7 +140,7 @@ _10:
         erro12 = error1 + error2;
         errsum = errsum + erro12 - errmax;
         area = area + area12 - rlist[maxerr];
-        if ((defab1 == error1) || (defab2 == error2)) goto _25; 
+        if ((defab1 == error1) || (defab2 == error2)) goto _25;
         if ((fabs(rlist[maxerr] - area12) > 1.0e-5 * fabs(area12))
             || (erro12 < .99 * errmax)) goto _20;
         if (extrap) iroff2++;
@@ -154,7 +154,7 @@ _25:
         nnlog[maxerr] = nrmom;
         nnlog[last] = nrmom;
         errbnd = max(epsabs,epsrel * fabs(area));
-        
+
 /* Test for roundoff error and eventually set error flag. */
         if (((iroff1 + iroff2) >= 10) || (iroff3 >= 20))
             *ier = 2;
@@ -165,11 +165,11 @@ _25:
     equals limit. */
         if (last == limit)    /* last == limit */
             *ier = 1;
-                    
+
 /* Set error flag in the case of bad integrand behavior at some
     points in the integration range. */
         if (max(fabs(a1),fabs(b2)) <= (1.0 +1000.0 * epmach) *
-            (fabs(a2) + 1000.0*uflow)) 
+            (fabs(a2) + 1000.0*uflow))
             *ier = 4;
 
 /* Append the newly-created intervals to the list. */
@@ -203,11 +203,11 @@ _25:
         if (fabs(b1-a1) > small)
             erlarg += erro12;
         if (extrap) goto _70;
-        
+
 /* Test whether the interval to be bisected next is the smallest interval. */
 _50:
         width = fabs(blist[maxerr] - alist[maxerr]);
-        if (width > small) 
+        if (width > small)
             goto _140;
         if (extall)
             goto _60;
@@ -313,5 +313,5 @@ _190:
 _200:
     if ((sincos == SINE) && (omega < 0.0))
         result = - result;
-    return result;    
-}    
+    return result;
+}
