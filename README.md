@@ -1,7 +1,5 @@
 # CQUADPACK
 
----
-
 [![Build Status](https://travis-ci.org/ESSS/cquadpack.svg?branch=master)](https://travis-ci.org/ESSS/cquadpack)
 
 This package includes a complete port of the *QUADPACK* Fortran codes to C.
