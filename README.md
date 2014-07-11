@@ -2,6 +2,8 @@
 
 ---
 
+[![Build Status](https://travis-ci.org/ESSS/cquadpack.svg?branch=master)](https://travis-ci.org/ESSS/cquadpack)
+
 This package includes a complete port of the *QUADPACK* Fortran codes to C.
 Unlike ports created by translators, this port reimplements the algorithms
 to take advantage of C progralm structure and dynamic memory. Every effort
