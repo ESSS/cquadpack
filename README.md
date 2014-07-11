@@ -32,6 +32,7 @@ It is recommended to use [out-of-source builds](http://www.cmake.org/Wiki/CMake_
 For that, create the **build** directory and run CMake on it:
 
     mkdir build
+    cd build
     cmake ..
 
 ### Visual Studio
