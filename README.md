@@ -1,7 +1,5 @@
 # CQUADPACK
 
-(C) 2001, C. Bond. All rights reserved.
-
 ---
 
 This package includes a complete port of the *QUADPACK* Fortran codes to C.
@@ -19,6 +17,9 @@ integrators are subroutines passing the result back through a parameter.
 QUADPACK is well documented in the publication, ``QUADPACK, A Subroutine
 Package for Automatic Integration,'' by R. Piessens, et al., Springer-Verlag,
 1980.
+
+This port was initially done by C. Bond (http://www.crbond.com/) and this is
+a repackaging of the initial code with some minor changes.
 
 ## DEPENDENCIES
 
