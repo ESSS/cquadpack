@@ -42,6 +42,29 @@ set(targets cquadpack_dll cquadpack)
 add_library(cquadpack STATIC ${source_files})
 add_library(cquadpack_dll SHARED ${source_files})
 
+set(tests
+    dq4tst
+    dqaget
+    dqagit
+    #dqagpt
+    dqagst
+    dqagtst
+    dqawct
+    dqawft
+    dqawot
+    dqawst
+    dqct
+    dqngt
+)
+
+enable_testing()
+foreach(test_target ${tests})
+  add_executable(${test_target} test/${test_target}.c)
+  target_link_libraries(${test_target} cquadpack)
+  add_test(NAME ${test_target} COMMAND ${test_target})
+endforeach(test_target)
+
+
 # Set the output directory to 'lib'
 foreach(target ${targets})
     set_target_properties(${target} PROPERTIES LIBRARY_OUTPUT_DIRECTORY lib)

@@ -4,7 +4,7 @@
 #include <malloc.h>
 #include "cquadpak.h"
 
-double fx(double x)
+double fx(double x, void* user_data)
 {
 	return exp(-x);
 }
@@ -28,7 +28,7 @@ void main()
 	momcom = 0;
 	result = dqc25o(fx,a,b,omega,COSINE,nrmom,MAXP1,
 		ksave,&abserr,&neval,&resabs,&resasc,
-		&momcom,chebmo);
+		&momcom,chebmo,0);
 	printf("\nresult = %.14lg\n",result);
 	printf("abserr = %lg\n",abserr);
 	printf("neval = %d\n",neval);

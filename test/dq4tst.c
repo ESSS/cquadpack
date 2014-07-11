@@ -4,7 +4,7 @@
 #include <malloc.h>
 #include "cquadpak.h"
 
-double fx(double x)
+double fx(double x, void* user_data)
 {
 	return exp(-x);
 }
@@ -27,7 +27,7 @@ void main()
 	epsabs = 1e-8;
 	epsrel = 1e-12;
     result = dqfour(fx,a,b,omega,COSINE,epsabs,epsrel,
-        icall,MAXP1,&abserr,&neval,&ier,&momcom,chebmo);
+        icall,MAXP1,&abserr,&neval,&ier,&momcom,chebmo,0);
 	printf("\nresult = %.17lg\n",result);
 	printf("abserr = %.17lg\n",abserr);
 	printf("neval = %d\n",neval);

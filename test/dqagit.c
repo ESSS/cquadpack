@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include "cquadpak.h"
 
-double f(double x)
+double f(double x, void* user_data)
 {
 	return log(x)/(1.0 + 100.0*x*x);
 }
-double f2(double x)
+double f2(double x, void* user_data)
 {
     return exp(-x*x);
 }
@@ -22,7 +22,7 @@ void main()
 	epsabs = 0.0;
 	epsrel = 1e-8;
 	
-    result=dqagi(f,bound,inf,epsabs,epsrel,&abserr,&neval,&ier);
+    result=dqagi(f,bound,inf,epsabs,epsrel,&abserr,&neval,&ier,0);
 
 	printf("dqagi integral approximation = %.17lg\n",result);
 	printf("estimate of absolute error = %.17lg\n",abserr);

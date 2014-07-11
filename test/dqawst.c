@@ -3,7 +3,7 @@
 #include <math.h>
 #include "cquadpak.h"
 
-double f(double x)
+double f(double x, void* user_data)
 {
    double result;
    result = 0.0;
@@ -30,7 +30,7 @@ void main()
     epsrel = 1.0e-5;
 
     result = dqaws(f,a,b,alfa,beta,wgtfunc,epsabs,epsrel,&abserr,
-            &neval,&ier);
+            &neval,&ier,0);
 
     printf("Integral approximation = %.12lf\n",result);
     printf("Estimate of absolute error = %.12lf\n",abserr);

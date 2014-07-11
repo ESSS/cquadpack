@@ -3,11 +3,11 @@
 #include <math.h>
 #include "cquadpak.h"
 
-double f(double x)
+double f(double x, void* user_data)
 {
     return ((x > 0.0) ? (1.0/sqrt(x)) : 0.0);
 }
-double fx(double x)
+double fx(double x, void* user_data)
 {
 	return exp(-x);
 }
@@ -21,7 +21,7 @@ void main()
     omega = 0.5 * Pi;
     epsabs = 1.0e-8;
     result =dqawf(fx,a,omega,COSINE,epsabs,&abserr,
-		&neval,&ier);
+		&neval,&ier,0);
 	printf("\nresult = %.17lg\n",result);
 	printf("abserr = %.17lg\n",abserr);
 	printf("neval = %d\n",neval);

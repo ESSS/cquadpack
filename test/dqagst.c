@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "cquadpak.h"
 
-double efunc(double x)
+double efunc(double x, void* user_data)
 {
 	return log(x)/sqrt(x);
 }
@@ -19,7 +19,7 @@ void main()
     epsabs = 0.0;
     epsrel = 1e-3;
 	
-    y=dqags(efunc,a,b,epsabs,epsrel,&abserr,&neval,&ier);
+    y=dqags(efunc,a,b,epsabs,epsrel,&abserr,&neval,&ier,0);
 
 	printf("dqags integral = %.17lg\n",y);
 	printf("abserr = %.17lg, neval = %d, ier = %d\n",

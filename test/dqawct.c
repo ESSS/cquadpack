@@ -3,7 +3,7 @@
 #include <math.h>
 #include "cquadpak.h"
 
-double f(double x)
+double f(double x, void* user_data)
 {
    double result;
    result = 1.0/(5.0*pow(x,3.0)+6.0);
@@ -27,7 +27,7 @@ void main()
     epsrel = 1.0e-3;
 
     result = dqawc(f,a,b,c,epsabs,epsrel,&abserr,
-            &neval,&ier);
+            &neval,&ier,0);
 
     printf("Integral approximation = %.12lf\n",result);
     printf("Estimate of absolute error = %.12lf\n",abserr);

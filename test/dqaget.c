@@ -11,7 +11,7 @@ void main()
 	double a,b,epsabs,epsrel,abserr;
 	double resabs,resasc;
 	double y;
-    int irule,neval,ier,last;
+    int irule,neval,ier,last,i;
 	char buffer[40];
 		
     a = 0.0;
@@ -19,16 +19,13 @@ void main()
 	epsabs = 0.0;
 	epsrel = 1e-8;
 	
-	printf("G/K rule (1-6) ?");
-	gets(buffer);
-	sscanf(buffer,"%d",&irule);
-    if ((irule < 1) || (irule > 6)) {
-        printf("Invalid rule!\n");
-        return;
-    }
-    y=dqage(efunc,a,b,epsabs,epsrel,irule,&abserr,&neval,&ier,&last);
+    for (irule = 1; irule <= 6; ++irule) {
+        y=dqage(efunc,a,b,epsabs,epsrel,irule,&abserr,&neval,&ier,&last,0);
 
-    printf("dqage integral = %.17lg\n",y);
-	printf("abserr = %.17lg, neval = %d, ier = %d\n",
-		abserr,neval,ier);
+        printf("G/K rule = %i\n", irule);
+        printf("dqage integral = %.17lg\n",y);
+	    printf("abserr = %.17lg, neval = %d, ier = %d\n",
+		    abserr,neval,ier);
+        printf("\n");
+    }
 }

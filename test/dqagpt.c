@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "cquadpak.h"
 
-double f(double x)
+double f(double x, void* user_data)
 {
     return pow(x,3.0)*log(fabs((x*x-1.0)*(x*x-2.0)));
 }
@@ -22,7 +22,7 @@ void main()
 	epsabs = 0.0;
     epsrel = 1e-3;
 	
-	result = dqagp(f,a,b,npts2,points,epsabs,epsrel,&abserr,&neval,&ier);
+	result = dqagp(f,a,b,npts2,points,epsabs,epsrel,&abserr,&neval,&ier,0);
 
 	printf("dqagp integral = %.17lg\n",result);
 	printf("abserr = %.17lg, neval = %d, ier = %d\n",
