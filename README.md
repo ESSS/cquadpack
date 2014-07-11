@@ -24,6 +24,21 @@ Package for Automatic Integration,'' by R. Piessens, et al., Springer-Verlag,
 
 The code has no external dependency. It only depends on the standard C library.
 
+## BUILDING
+
+[CMake](http://www.cmake.org/) is required.
+
+It is recommended to use [out-of-source builds](http://www.cmake.org/Wiki/CMake_FAQ#Out-of-source_build_trees) builds.
+For that, create the **build** directory and run CMake on it:
+
+    mkdir build
+    cmake ..
+
+### Visual Studio
+
+Open the Visual Studio command prompt and run the above commands. A solution *cquadpack.sln* will be generated, open it
+with Visual Studio and compile it.
+
 ## FILES
 
 The files are distributed among several directories for convenience in
