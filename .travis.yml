@@ -7,6 +7,6 @@ script:
   - mkdir build
   - cd build
   - cmake ..
-  - echo "Compile here"
+  - make
   - ctest -C Debug
   - ctest -C Release
