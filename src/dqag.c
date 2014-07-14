@@ -8,10 +8,6 @@
  * the resulting passing of memory pointers down the line.
  *
  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <float.h>
-#include <math.h>
 #include "cquadpak.h"
 
 /* DQAG - Approximation to definite integral. (From QUADPACK)

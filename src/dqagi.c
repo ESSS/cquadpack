@@ -1,5 +1,3 @@
-#include <float.h>
-#include <math.h>
 #include "cquadpak.h"
 
 /* DQAGI - Integration over (semi-) infinite intervals. (From QUADPACK)

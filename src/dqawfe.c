@@ -1,5 +1,3 @@
-#include <float.h>
-#include <math.h>
 #include "cquadpak.h"
 
 #define P   0.9

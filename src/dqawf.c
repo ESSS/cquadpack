@@ -1,9 +1,7 @@
-#include <malloc.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <float.h>
-#include <math.h>
 #include "cquadpak.h"
+
+#include <malloc.h>
+#include <stdio.h>
 
 #define P   0.9
 

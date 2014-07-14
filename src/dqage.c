@@ -1,5 +1,3 @@
-#include <float.h>
-#include <math.h>
 #include "cquadpak.h"
 
 /* DQAGE - Approximation to definite integral. (From QUADPACK)

@@ -1,6 +1,5 @@
-#include <float.h>
-#include <math.h>
 #include "cquadpak.h"
+
 /*  DQC25C - Integration rules for the computation of Cauchy
  *          principal value integrals.
  *

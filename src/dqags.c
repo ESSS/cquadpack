@@ -1,5 +1,3 @@
-#include <float.h>
-#include <math.h>
 #include "cquadpak.h"
 
 /* DQAGS - Integration over finite intervals. (From QUADPACK)

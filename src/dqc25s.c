@@ -1,5 +1,3 @@
-#include <float.h>
-#include <math.h>
 #include "cquadpak.h"
 
 double dqc25s(dq_function_type f,double a,double b,double bl,double br,

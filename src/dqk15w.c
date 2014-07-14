@@ -1,5 +1,3 @@
-#include <float.h>
-#include <math.h>
 #include "cquadpak.h"
 
 double G_K15W(dq_function_type f,double w(),double p1,double p2,double p3,

@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <float.h>
-#include <math.h>
 #include "cquadpak.h"
+
 /*  DQAWS - Approximation to integral with algebraic and/or logarithmic
  *          singularities.
  *

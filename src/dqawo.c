@@ -1,9 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <float.h>
-#include <math.h>
-#include <malloc.h>
 #include "cquadpak.h"
+
+#include <stdio.h>
+#include <malloc.h>
 
 double dqawo(dq_function_type f,double a,double b,double omega, int sincos,
     double epsabs,double epsrel,double *abserr,int *neval,

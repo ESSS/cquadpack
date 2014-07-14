@@ -1,5 +1,3 @@
-#include <math.h>
-#include <float.h>
 #include "cquadpak.h"
 
 /*  DQAWCE - Computation of Cauchy principal value

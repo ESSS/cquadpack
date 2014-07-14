@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <float.h>
-#include <math.h>
 #include "cquadpak.h"
 
 void dqcheb(double x[],double fval[],double cheb12[],double cheb24[])
