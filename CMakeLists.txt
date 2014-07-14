@@ -43,9 +43,11 @@ add_library(cquadpack STATIC ${source_files})
 add_library(cquadpack_dll SHARED ${source_files})
 
 # Add the math libraries (gcc requires this)
-target_link_libraries(cquadpack m)
-target_link_libraries(cquadpack_dll m)
-
+IF(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    target_link_libraries(cquadpack m)
+    target_link_libraries(cquadpack_dll m)
+ENDIF(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+    
 set(tests
     dq4tst
     dqaget
