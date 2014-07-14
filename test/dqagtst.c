@@ -14,7 +14,7 @@ double efunc3(double x, void* user_data)
 {
     return cos(100.0*sin(x));
 }
-void main()
+int main()
 {
 	double a,b,epsabs,epsrel,abserr;
 	double resabs,resasc;
@@ -40,4 +40,5 @@ void main()
 	        abserr,neval,ier);
         printf("\n");
     }
+    return 0;
 }

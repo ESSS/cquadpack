@@ -2,11 +2,11 @@
 #include <stdio.h>
 #include "cquadpak.h"
 
-double efunc(double x)
+double efunc(double x, void* user_data)
 {
     return 1.0/sqrt(fabs(x*x+2.0*x-2.0));
 }
-void main()
+int main()
 {
 	double a,b,epsabs,epsrel,abserr;
 	double resabs,resasc;
@@ -28,4 +28,5 @@ void main()
 		    abserr,neval,ier);
         printf("\n");
     }
+    return 0;
 }

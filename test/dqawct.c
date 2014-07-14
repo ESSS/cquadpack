@@ -10,7 +10,7 @@ double f(double x, void* user_data)
    return result;
 }
 
-void main()
+int main()
 {
     double a,b,c,epsabs,epsrel,abserr,result;
     int neval,ier;
@@ -33,4 +33,5 @@ void main()
     printf("Estimate of absolute error = %.12lf\n",abserr);
     printf("Number of function evaluations = %d\n",neval);
     printf("Error code = %d\n",ier);
+    return 0;
 }

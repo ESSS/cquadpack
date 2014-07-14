@@ -7,7 +7,7 @@ double efunc(double x, void* user_data)
 	return log(x)/sqrt(x);
 }
 
-void main()
+int main()
 {
 	double a,b,epsabs,epsrel,abserr;
 	double resabs,resasc;
@@ -24,4 +24,5 @@ void main()
 	printf("dqags integral = %.17lg\n",y);
 	printf("abserr = %.17lg, neval = %d, ier = %d\n",
 		abserr,neval,ier);
+    return 0;
 }

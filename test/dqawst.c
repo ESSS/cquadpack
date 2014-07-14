@@ -11,7 +11,7 @@ double f(double x, void* user_data)
    return result;
 }
 
-void main()
+int main()
 {
     double a,b,alfa,beta,epsabs,epsrel,abserr,result;
     int wgtfunc,neval,ier;
@@ -36,4 +36,5 @@ void main()
     printf("Estimate of absolute error = %.12lf\n",abserr);
     printf("Number of function evaluations = %d\n",neval);
     printf("Error code = %d\n",ier);
+    return 0;
 }

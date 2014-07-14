@@ -9,7 +9,7 @@ double fx(double x, void* user_data)
 	return exp(-x);
 }
 
-void main()
+int main()
 {
 	double a,b,omega,result,abserr,epsabs,epsrel;
     double **chebmo,res3a[52],rlist2[52];
@@ -35,4 +35,5 @@ void main()
 	for (i = 0; i < n; i++)
 		free(chebmo[i]);
 	free(chebmo);
+    return 0;
 }

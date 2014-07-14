@@ -13,7 +13,7 @@ double f2(double x, void* user_data)
     return log(x)*sin(10.0*x);
 }
 
-void main()
+int main()
 {
 	double a,b,omega,result,abserr,epsabs,epsrel;
 	int ier,neval;
@@ -28,4 +28,5 @@ void main()
 	printf("abserr = %.18lg\n",abserr);
 	printf("neval = %d\n",neval);
 	printf("ier = %d\n",ier);
+    return 0;
 }

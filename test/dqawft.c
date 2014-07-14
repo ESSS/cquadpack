@@ -12,7 +12,7 @@ double fx(double x, void* user_data)
 	return exp(-x);
 }
 
-void main()
+int main()
 {
 	double a,b,omega,result,abserr,epsabs;
 	int ier,neval;
@@ -25,4 +25,5 @@ void main()
 	printf("\nresult = %.17lg\n",result);
 	printf("abserr = %.17lg\n",abserr);
 	printf("neval = %d\n",neval);
+    return 0;
 }
