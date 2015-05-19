@@ -88,15 +88,15 @@ foreach(test_target ${tests})
   add_test(NAME ${test_target}_dll COMMAND ${test_target}_dll)
 endforeach(test_target)
 
-
 foreach(target ${targets})
-    # Set the output directory to 'lib'
-    #set_target_properties(${target} PROPERTIES LIBRARY_OUTPUT_DIRECTORY lib)
-    #set_target_properties(${target} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY lib)
-    #set_target_properties(${target} PROPERTIES RUNTIME_OUTPUT_DIRECTORY lib)
-
     # Add the math libraries (gcc requires this)
     if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
         target_link_libraries(${target} m)
     endif()
 endforeach(target)
+
+install(TARGETS ${targets}
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
