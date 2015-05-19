@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.6)
 
-project(cquadpack C)
+project(cquadpack)
 
 include_directories(include)
 
@@ -36,18 +36,28 @@ set(source_files
     src/dqsort.c
     src/dqwgt.c
 )
+set(header_files
+    include/cquadpak.h
+)
 
-set(targets cquadpack_dll cquadpack)
+set(targets cquadpack cquadpack_dll)
 
-add_library(cquadpack STATIC ${source_files})
-add_library(cquadpack_dll SHARED ${source_files})
+# Static library
+set(BUILD_SHARED_LIBS ON)
+add_library(cquadpack STATIC ${source_files} ${header_files})
+set_target_properties(cquadpack PROPERTIES
+    COMPILE_FLAGS -DCQUADPACK_DLL_STATIC_DEFINE)
 
-# Add the math libraries (gcc requires this)
-IF(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    target_link_libraries(cquadpack m)
-    target_link_libraries(cquadpack_dll m)
-ENDIF(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    
+# Shared library
+add_library(cquadpack_dll SHARED ${source_files} ${header_files})
+set_property(TARGET cquadpack_dll PROPERTY POSITION_INDEPENDENT_CODE 1)
+
+
+# Add export header
+include (GenerateExportHeader)
+generate_export_header(cquadpack_dll)
+include_directories(${PROJECT_BINARY_DIR})
+
 set(tests
     dq4tst
     dqaget
@@ -65,15 +75,28 @@ set(tests
 
 enable_testing()
 foreach(test_target ${tests})
-  add_executable(${test_target} test/${test_target}.c)
+  # An executable with the STATIC version
+  add_executable(${test_target} test/${test_target}.c ${header_files})
+  set_target_properties(${test_target} PROPERTIES
+    COMPILE_FLAGS -DCQUADPACK_DLL_STATIC_DEFINE)
   target_link_libraries(${test_target} cquadpack)
   add_test(NAME ${test_target} COMMAND ${test_target})
+
+  # An executable with the SHARED version
+  add_executable(${test_target}_dll test/${test_target}.c ${header_files})
+  target_link_libraries(${test_target}_dll cquadpack_dll)
+  add_test(NAME ${test_target}_dll COMMAND ${test_target}_dll)
 endforeach(test_target)
 
 
-# Set the output directory to 'lib'
 foreach(target ${targets})
-    set_target_properties(${target} PROPERTIES LIBRARY_OUTPUT_DIRECTORY lib)
-    set_target_properties(${target} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY lib)
-    set_target_properties(${target} PROPERTIES RUNTIME_OUTPUT_DIRECTORY lib)
+    # Set the output directory to 'lib'
+    #set_target_properties(${target} PROPERTIES LIBRARY_OUTPUT_DIRECTORY lib)
+    #set_target_properties(${target} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY lib)
+    #set_target_properties(${target} PROPERTIES RUNTIME_OUTPUT_DIRECTORY lib)
+
+    # Add the math libraries (gcc requires this)
+    if(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+        target_link_libraries(${target} m)
+    endif()
 endforeach(target)
