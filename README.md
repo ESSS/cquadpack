@@ -25,6 +25,10 @@ a repackaging of the initial code with some minor changes.
 
 The code has no external dependency. It only depends on the standard C library.
 
+## INSTALLATION
+
+`conda install -c https://conda.anaconda.org/edisongustavo cquadpack`
+
 ## BUILDING
 
 [CMake](http://www.cmake.org/) is required.
