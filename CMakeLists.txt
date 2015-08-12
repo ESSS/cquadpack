@@ -103,5 +103,6 @@ install(TARGETS ${targets}
 
 install(FILES
     include/cquadpack.h
+    ${PROJECT_BINARY_DIR}/cquadpack_export.h
     DESTINATION include
 )
