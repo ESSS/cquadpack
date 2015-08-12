@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 void dqcheb(double x[],double fval[],double cheb12[],double cheb24[])
 {

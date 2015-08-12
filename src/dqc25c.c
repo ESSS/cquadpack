@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 /*  DQC25C - Integration rules for the computation of Cauchy
  *          principal value integrals.

@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 double G_K15I(dq_function_type f, double boun, int inf, double a, double b,
     double *abserr,double *resabs,double *resasc, void* user_data)

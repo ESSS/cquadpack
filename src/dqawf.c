@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 #include <malloc.h>
 #include <stdio.h>

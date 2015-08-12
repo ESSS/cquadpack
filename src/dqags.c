@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 /* DQAGS - Integration over finite intervals. (From QUADPACK)
  *

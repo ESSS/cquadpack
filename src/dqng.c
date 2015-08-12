@@ -1,6 +1,6 @@
 #include <float.h>
 #include <math.h>
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 double dqng(dq_function_type f,double a,double b,double epsabs,
     double epsrel,double *abserr,int *neval,int *ier, void* user_data)

@@ -4,7 +4,7 @@
  *  Uses Gauss-Kronrod integrator
  */
 #include <stdio.h>
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 double x_global;
 

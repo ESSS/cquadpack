@@ -1,6 +1,6 @@
 #include <math.h>
 #include <stdio.h>
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 double f(double x, void* user_data)
 {

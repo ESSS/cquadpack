@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 /* DQAGE - Approximation to definite integral. (From QUADPACK)
  *

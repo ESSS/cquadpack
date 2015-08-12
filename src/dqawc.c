@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 /*  DQAWC - Computation of Cauchy principal value
  *

@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 double dqc25s(dq_function_type f,double a,double b,double bl,double br,
     double alfa,double beta,double ri[],double rj[],double rg[],

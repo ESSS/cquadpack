@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 double G_K15W(dq_function_type f,double w(),double p1,double p2,double p3,
     double p4,int kp,double a,double b,double *abserr,

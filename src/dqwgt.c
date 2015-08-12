@@ -1,6 +1,6 @@
 #include <float.h>
 #include <math.h>
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 double dqwgtc(double x,double c,double p2,double p3,double p4,int kp)
 {

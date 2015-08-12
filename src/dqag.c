@@ -8,7 +8,7 @@
  * the resulting passing of memory pointers down the line.
  *
  */
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 /* DQAG - Approximation to definite integral. (From QUADPACK)
  *

@@ -1,6 +1,6 @@
 #include <float.h>
 #include <math.h>
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 double G_K61(dq_function_type f,double a,double b,double *abserr,
     double *resabs,double *resasc, void* user_data)

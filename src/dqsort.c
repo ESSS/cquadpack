@@ -1,6 +1,6 @@
 #include <float.h>
 #include <math.h>
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 void dqsort(int limit,int last,int *maxerr,double *ermax,double elist[],
     int iord[],int *nrmax)

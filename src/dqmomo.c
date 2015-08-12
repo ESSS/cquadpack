@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 void dqmomo(double alpha,double beta,double ri[],double rj[],
     double rg[], double rh[],int wgtfunc)

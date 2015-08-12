@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 /* DQAGI - Integration over (semi-) infinite intervals. (From QUADPACK)
  *

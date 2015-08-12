@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 /* DQFOUR - Computation of oscillatory integrals.
  *

@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 /* DQAGP - Integration over finite intervals. (From QUADPACK)
  *       Accepts a list of known singularities.

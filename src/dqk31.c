@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 double G_K31(dq_function_type f,double a,double b,double *abserr,
     double *resabs,double *resasc, void* user_data)

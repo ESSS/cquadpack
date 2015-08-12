@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 
 double dqext(int *n,double epstab[],double *abserr,

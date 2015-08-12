@@ -1,4 +1,4 @@
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 /*  DQAWSE - Approximation to integral with algebraic and/or logarithmic
  *          singularities.

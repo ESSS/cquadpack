@@ -2,7 +2,7 @@
 #include <float.h>
 #include <math.h>
 #include <malloc.h>
-#include "cquadpak.h"
+#include "cquadpack.h"
 
 double fx(double x, void* user_data)
 {

@@ -37,7 +37,7 @@ set(source_files
     src/dqwgt.c
 )
 set(header_files
-    include/cquadpak.h
+    include/cquadpack.h
 )
 
 set(targets cquadpack cquadpack_static)
@@ -99,4 +99,9 @@ install(TARGETS ${targets}
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
     ARCHIVE DESTINATION lib
+)
+
+install(FILES
+    include/cquadpack.h
+    DESTINATION include
 )
