@@ -34,7 +34,7 @@ double G_K21(dq_function_type f,double a,double b,double *abserr,
         0.26926671930999635509,
         0.29552422471475287017};
     double fv1[10],fv2[10];
-    double absc,centr,dhlgth,dmax1,dmin1;
+    double absc,centr,dhlgth;
     double fc,fsum,fval1,fval2,hlgth;
     double resg,resk,reskh,result;
     int j,jtw,jtwm1;
