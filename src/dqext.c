@@ -4,7 +4,7 @@
 double dqext(int *n,double epstab[],double *abserr,
     double res3la[],int *nres)
 {
-    double delta1,delta2,delta3,dmax1,epsinf;
+    double delta1,delta2,delta3,epsinf;
     double error,err1,err2,err3,e0,e1,e1abs,e2,e3;
     double res,result,ss,tol1,tol2,tol3;
     int NN,i,ib,ib2,ie,indx,k1,k2,k3,limexp,newelm,num;
