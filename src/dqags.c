@@ -68,7 +68,7 @@ double dqags(dq_function_type f,double a,double b,double epsabs,
     if ((*abserr <= 100.0 * epmach * defabs) && (*abserr > errbnd))
         *ier = 2;
     if (limit == 0) *ier = 1;
-    if ((*ier != 0) || (*abserr <= errbnd) && (*abserr != resabs) ||
+    if ((*ier != 0) || ((*abserr <= errbnd) && (*abserr != resabs)) ||
         (*abserr == 0.0)) goto _140;
 
 /* Initialization. */
