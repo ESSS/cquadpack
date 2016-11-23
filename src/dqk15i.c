@@ -27,7 +27,7 @@ double G_K15I(dq_function_type f, double boun, int inf, double a, double b,
         0.38183005050511894495,
         0.41795918367346938776};
     double fv1[8],fv2[8];
-    double absc,absc1,absc2,centr,dinf,dmax1,dmin1;
+    double absc,absc1,absc2,centr,dinf;
     double fc,fsum,fval1,fval2,hlgth,resg,resk;
     double reskh,result,tabsc1,tabsc2;
     int j;
