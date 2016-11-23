@@ -42,7 +42,7 @@ double G_K15I(dq_function_type f, double boun, int inf, double a, double b,
     fc=(fval1/centr)/centr;
     resg = fc * WG7[3];
     resk = fc * WGK15[7];
-    *resabs = abs(resk);
+    *resabs = fabs(resk);
     for (j = 0; j < 7; j++) {
         absc = hlgth * XGK15[j];
         absc1 = centr - absc;
@@ -62,17 +62,17 @@ double G_K15I(dq_function_type f, double boun, int inf, double a, double b,
         fsum = fval1 + fval2;
         if (j & 1) resg += WG7[j/2] * fsum; /* odd 'j's are truncated */
         resk += WGK15[j] * fsum;
-        *resabs = (*resabs) + WGK15[j] * (abs(fval1) + abs(fval2));
+        *resabs = (*resabs) + WGK15[j] * (fabs(fval1) + fabs(fval2));
     }
     reskh = resk * 0.5;
-    *resasc = WGK15[7] * abs(fc - reskh);
+    *resasc = WGK15[7] * fabs(fc - reskh);
     for (j = 0; j < 7; j++ )
-        *resasc = (*resasc) + WGK15[j] * (abs(fv1[j] - reskh) +
-            abs(fv2[j] - reskh));
+        *resasc = (*resasc) + WGK15[j] * (fabs(fv1[j] - reskh) +
+            fabs(fv2[j] - reskh));
     result = resk * hlgth;
     *resabs = (*resabs) * hlgth;
     *resasc = (*resasc) * hlgth;
-    *abserr = abs((resk - resg) * hlgth);
+    *abserr = fabs((resk - resg) * hlgth);
     if ((*resasc != 0.0) && (*abserr != 0.0))
         *abserr = (*resasc) * min(1.0,pow((200.0 * (*abserr)/(*resasc)),1.5));
     if (*resabs > uflow/(50.0 * epmach))
