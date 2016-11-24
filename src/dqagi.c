@@ -43,7 +43,7 @@ double dqagi(dq_function_type f,double bound,int inf,double epsabs,
     double erlast,errbnd,errmax,error1,error2,erro12;
     double errsum,ertest,resabs,reseps,result,res3la[3];
     double alist[LIMIT],blist[LIMIT],elist[LIMIT],rlist[LIMIT];
-    double rlist2[52],small;
+    double rlist2[52],small = 0; /* small will be initialized in _80 */
 
     int id,ierro,iord[LIMIT],iroff1,iroff2,iroff3,jupbnd,k,ksgn;
     int ktmin,last,maxerr,nres,nrmax,numrl2;

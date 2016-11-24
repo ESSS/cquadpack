@@ -34,7 +34,7 @@ double dqags(dq_function_type f,double a,double b,double epsabs,
     double defab2,dres,elist[LIMIT],erlarg,erlast,errbnd;
     double errmax,error1,error2,erro12,errsum,ertest;
     double resabs,reseps,result,res3la[3],rlist[LIMIT];
-    double rlist2[52],small;
+    double rlist2[52],small = 0; /* small will be initialized in _80 */
 
     int id,ierro,iord[LIMIT],iroff1,iroff2,iroff3,jupbnd,k,ksgn;
     int ktmin,last,maxerr,nres,nrmax,numrl2;
