@@ -6,7 +6,7 @@ double G_K41(dq_function_type f,double a,double b,double *abserr,
     double *resabs,double *resasc, void* user_data)
 {
 /* Gauss-Kronrod abscissae and weights for 41 - 20 rules */
-    static long double XGK41[21] = {
+    static double XGK41[21] = {
         0.99885903158827766384,
         0.99312859918509492479,
         0.98150787745025025919,
@@ -28,7 +28,7 @@ double G_K41(dq_function_type f,double a,double b,double *abserr,
         0.15260546524092267551,
         0.07652652113349733375,
         0.00000000000000000000};
-    static long double WGK41[21] = {
+    static double WGK41[21] = {
         0.00307358371852053150,
         0.00860026985564294220,
         0.01462616925697125298,
@@ -50,7 +50,7 @@ double G_K41(dq_function_type f,double a,double b,double *abserr,
         0.07570449768455667466,
         0.07637786767208073671,
         0.07660071191799965645};
-    static long double WG20[10] = {
+    static double WG20[10] = {
         0.01761400713915211831,
         0.04060142980038694133,
         0.06267204833410906357,

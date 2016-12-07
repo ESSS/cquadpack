@@ -6,7 +6,7 @@ double G_K51(dq_function_type f,double a,double b,double *abserr,
     double *resabs,double *resasc, void* user_data)
 {
 /* Gauss-Kronrod abscissae and weights for 51 - 25 rules */
-    static long double XGK51[26] = {
+    static double XGK51[26] = {
         0.99926210499260983419,
         0.99555696979049809791,
         0.98803579453407724764,
@@ -33,7 +33,7 @@ double G_K51(dq_function_type f,double a,double b,double *abserr,
         0.12286469261071039639,
         0.06154448300568507889,
         0.00000000000000000000};
-    static long double WGK51[26] = {
+    static double WGK51[26] = {
         0.00198738389233031593,
         0.00556193213535671376,
         0.00947397338617415161,
@@ -60,7 +60,7 @@ double G_K51(dq_function_type f,double a,double b,double *abserr,
         0.06112850971705304831,
         0.06147118987142531666,
         0.06158081806783293508};
-    static long double WG25[13] = {
+    static double WG25[13] = {
         0.01139379850102628795,
         0.02635498661503213726,
         0.04093915670130631266,

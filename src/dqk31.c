@@ -3,7 +3,7 @@
 double G_K31(dq_function_type f,double a,double b,double *abserr,
     double *resabs,double *resasc, void* user_data)
 {
-    static long double XGK31[16] = {
+    static double XGK31[16] = {
         0.99800229869339706029,
         0.98799251802048542849,
         0.96773907567913913426,
@@ -20,7 +20,7 @@ double G_K31(dq_function_type f,double a,double b,double *abserr,
         0.20119409399743452230,
         0.10114206691871749903,
         0.00000000000000000000};
-    static long double WGK31[16] = {
+    static double WGK31[16] = {
         0.00537747987292334899,
         0.01500794732931612254,
         0.02546084732671532019,
@@ -37,7 +37,7 @@ double G_K31(dq_function_type f,double a,double b,double *abserr,
         0.09917359872179195933,
         0.10076984552387559504,
         0.10133000701479154902};
-    static long double WG15[8] = {
+    static double WG15[8] = {
         0.03075324199611726835,
         0.07036604748810812471,
         0.10715922046717193501,

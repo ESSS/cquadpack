@@ -7,7 +7,7 @@ double G_K61(dq_function_type f,double a,double b,double *abserr,
 {
 /* Gauss-Kronrod abscissae and weights for 61 - 30 rules */
 
-    static long double XGK61[31] = {
+    static double XGK61[31] = {
         0.99948441005049063757,
         0.99689348407464954027,
         0.99163099687040459486,
@@ -39,7 +39,7 @@ double G_K61(dq_function_type f,double a,double b,double *abserr,
         0.10280693796673703015,
         0.05147184255531769583,
         0.00000000000000000000};
-    static long double WGK61[31] = {
+    static double WGK61[31] = {
         0.00138901369867700762,
         0.00389046112709988405,
         0.00663070391593129217,
@@ -71,7 +71,7 @@ double G_K61(dq_function_type f,double a,double b,double *abserr,
         0.05122154784925877217,
         0.05142612853745902593,
         0.05149472942945156756};
-    static long double WG30[15] = {
+    static double WG30[15] = {
         0.00796819249616660562,
         0.01846646831109095914,
         0.02878470788332336935,

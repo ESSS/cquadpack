@@ -3,7 +3,7 @@
 double G_K15I(dq_function_type f, double boun, int inf, double a, double b,
     double *abserr,double *resabs,double *resasc, void* user_data)
 {
-    static long double XGK15[8] = {
+    static double XGK15[8] = {
         0.99145537112081263921,
         0.94910791234275852453,
         0.86486442335976907279,
@@ -12,7 +12,7 @@ double G_K15I(dq_function_type f, double boun, int inf, double a, double b,
         0.40584515137739716691,
         0.20778495500789846760,
         0.00000000000000000000};
-    static long double WGK15[8] = {
+    static double WGK15[8] = {
         0.02293532201052922496,
         0.06309209262997855329,
         0.10479001032225018384,
@@ -21,7 +21,7 @@ double G_K15I(dq_function_type f, double boun, int inf, double a, double b,
         0.19035057806478540991,
         0.20443294007529889241,
         0.20948214108472782801};
-    static long double WG7[4] = {
+    static double WG7[4] = {
         0.12948496616886969327,
         0.27970539148927666790,
         0.38183005050511894495,
