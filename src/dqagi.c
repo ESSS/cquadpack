@@ -235,7 +235,7 @@ _80:
         small = .375;
         erlarg = errsum;
         ertest = errbnd;
-        rlist2[0] = area;
+        rlist2[1] = area;
 _90:
         ;
     }                    /* 90: */
