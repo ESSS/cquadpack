@@ -101,11 +101,11 @@ _5:
     ktmin = 0;
     small = fabs(b-a) * 0.75;
     nres = 0;
-    numrl2 = 0;
+    numrl2 = -1;
     extall = FALSE;
     if ((0.5 * fabs(b-a) * domega) > 2.0)
         goto _10;
-    numrl2 = 1;
+    numrl2 = 0;
     extall = TRUE;
     rlist2[0] = result;
 _10:
