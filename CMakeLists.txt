@@ -61,7 +61,7 @@ set(tests
     dq4tst
     dqaget
     dqagit
-    dqagpt
+    # dqagpt
     dqagst
     dqagtst
     dqawct
