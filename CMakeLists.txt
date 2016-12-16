@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8.6)
+cmake_minimum_required(VERSION 3.0)
 
 project(cquadpack)
 
@@ -61,7 +61,7 @@ set(tests
     dq4tst
     dqaget
     dqagit
-    #dqagpt
+    # dqagpt
     dqagst
     dqagtst
     dqawct
@@ -75,6 +75,7 @@ set(tests
 enable_testing()
 foreach(test_target ${tests})
     add_executable(${test_target} test/${test_target}.c ${header_files})
+    add_test(NAME ${test_target} COMMAND $<TARGET_FILE:${test_target}> --exe)
     target_link_libraries(${test_target} cquadpack)
 endforeach(test_target)
 
