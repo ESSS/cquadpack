@@ -9,7 +9,7 @@
 #define epmach     DBL_EPSILON
 #define LIMIT     500
 #define MAXP1     21
-#define Pi      M_PI
+#define Pi      3.141592653589793
 #define COSINE     1
 #define SINE    2
 
