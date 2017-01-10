@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <malloc.h>
+#include <stdlib.h>
 
 double dqawo(dq_function_type f,double a,double b,double omega, int sincos,
     double epsabs,double epsrel,double *abserr,int *neval,
