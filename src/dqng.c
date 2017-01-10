@@ -142,8 +142,8 @@ double dqng(dq_function_type f,double a,double b,double epsabs,
         0.03733422875193504032,
         0.03736107376267902341};
     double fv1[5],fv2[5],fv3[5],fv4[5],savfun[21];
-    double absc,centr,dhlgth,dmax1,dmin1;
-    double fcentr,fsum,fval,fval1,fval2,hlgth;
+    double absc,centr,dhlgth;
+    double fcentr,fval,fval1,fval2,hlgth;
     double result,res10,res21,res43,res87;
     double resabs,resasc,reskh;
     int ipx,k,l;
