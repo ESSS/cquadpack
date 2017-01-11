@@ -2,12 +2,13 @@
 
 #include <stdio.h>
 #include <malloc.h>
+#include <stdlib.h>
 
 double dqawo(dq_function_type f,double a,double b,double omega, int sincos,
     double epsabs,double epsrel,double *abserr,int *neval,
     int *ier, void* user_data)
 {
-    double **chebmo,res3a[52],result,rlist2[52];
+    double **chebmo,result;
     int i,momcom;
 
     if ((chebmo = (double **)calloc(MAXP1,sizeof(double *))) == NULL) {

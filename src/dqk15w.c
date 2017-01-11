@@ -28,7 +28,7 @@ double G_K15W(dq_function_type f,double w(),double p1,double p2,double p3,
         0.38183005050511894495,
         0.41795918367346938776};
     double fv1[7],fv2[7];
-    double absc,absc1,absc2,centr,dhlgth,dmax1,dmin1;
+    double absc,absc1,absc2,centr,dhlgth;
     double fc,fsum,fval1,fval2,hlgth;
     double resg,resk,reskh,result;
     int j,jtw,jtwm1;

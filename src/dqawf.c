@@ -2,6 +2,7 @@
 
 #include <malloc.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define P   0.9
 

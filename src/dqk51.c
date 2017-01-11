@@ -76,7 +76,7 @@ double G_K51(dq_function_type f,double a,double b,double *abserr,
         0.12317605372671545120};
 
     double fv1[25],fv2[25];
-    double absc,centr,dhlgth,dmax1,dmin1;
+    double absc,centr,dhlgth;
     double fc,fsum,fval1,fval2,hlgth;
     double resg,resk,reskh,result;
     int j,jtw,jtwm1;

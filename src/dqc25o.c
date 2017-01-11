@@ -21,7 +21,7 @@ double dqc25o(dq_function_type f,double a,double b,double omega,int sincos,
     double ac,an,an2,as,asap,ass,centr,conc,cons,cospar;
     double estc,ests,hlgth,parint,par2,par22;
     double resc12,resc24,ress12,ress24,result,sinpar;
-    double cheb12[13],cheb24[25],c[28],d[28],d1[28],d2[28];
+    double cheb12[13],cheb24[25],d[28],d1[28],d2[28];
     double d3[28],fval[25],v[28];
     int unitialized_value = 0xCCCCCCCC;
     double p2 = unitialized_value, p3 = unitialized_value, p4 = unitialized_value;
