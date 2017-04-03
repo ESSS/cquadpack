@@ -127,7 +127,7 @@ _15:
         if (((iroff1 + iroff2) >= 10) || (iroff3 >= 20))
             *ier = 2;
         if (iroff2 > 5)
-            *ier = 3;
+            ierro = 3;
 
 /* Set error flag in the case that the number of subintervals
     equals limit. */
